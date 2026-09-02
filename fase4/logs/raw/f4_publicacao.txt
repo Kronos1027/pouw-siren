@@ -3,3 +3,52 @@
 == auditoria de vazamento (grep da chave no diretório e no versionado) ==
 OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+== git status (staged) ==
+M  README.md
+M  checar_integridade.sh
+A  fase4/conferir_saida.py
+A  fase4/hashes_fase4.sha256
+A  fase4/logs/etapa11.md
+A  fase4/logs/raw/f4_e1_conferimento.txt
+A  fase4/logs/raw/f4_e1_saida_windows.txt
+A  fase4/logs/raw/f4_e2_ancoras.txt
+A  fase4/logs/raw/f4_e3_integridade_pre_push.txt
+AM fase4/logs/raw/f4_publicacao.txt
+A  fase4/validacao_cross_cpu_windows.md
+== commit ==
+[main 3887efc] Fase 4 - validacao cross-CPU EXTERNA da cadeia (Windows, dono do repo, item 1 do roadmap F4): 8/8 blocos VALIDOS com compromissos bit-a-bit em SO/Python/PyTorch/NumPy todos diferentes do ambiente de mineracao; integridade 75/75 ancoras no clone do validador; as 3 predicoes do relatorio F3 secao 11 confirmadas (compromissos, libm/C2, bytes npy); conferencia formal do output verbatim contra o cadeia.json oficial pelo novo fase4/conferir_saida.py (8/8 CONFERE, log bruto); +5 ancoras SHA-256 (80 total); README (limitacao 2 fechada com validacao externa, dica Windows autocrlf) e checar_integridade.sh atualizados; evidencia de terceiro citada como tal (protocolo item 7)
+ 11 files changed, 710 insertions(+), 29 deletions(-)
+ create mode 100644 fase4/conferir_saida.py
+ create mode 100644 fase4/hashes_fase4.sha256
+ create mode 100644 fase4/logs/etapa11.md
+ create mode 100644 fase4/logs/raw/f4_e1_conferimento.txt
+ create mode 100644 fase4/logs/raw/f4_e1_saida_windows.txt
+ create mode 100644 fase4/logs/raw/f4_e2_ancoras.txt
+ create mode 100644 fase4/logs/raw/f4_e3_integridade_pre_push.txt
+ create mode 100644 fase4/logs/raw/f4_publicacao.txt
+ create mode 100644 fase4/validacao_cross_cpu_windows.md
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   d00573f..3887efc  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+3887efc1bdc8a2c89d0a56b4b1493a84acdd0982	HEAD
+3887efc1bdc8a2c89d0a56b4b1493a84acdd0982	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T04:54:50Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase4 (autenticada) ==
+entradas em fase4/: 4
+ - conferir_saida.py file 8651
+ - hashes_fase4.sha256 file 490
+ - logs dir 0
+ - validacao_cross_cpu_windows.md file 10461
+== integridade pos-push (80 ancoras) ==
+linhas OK: 80
+2026-09-02 04:54:52 UTC
+2026-09-02 04:55:20 UTC
+== publicar_fase4.sh modo 2: commit do log de publicação (etapa12) ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
