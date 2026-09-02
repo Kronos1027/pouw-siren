@@ -1,0 +1,13 @@
+2026-09-02 04:55:55 UTC
+== estado final pos-publicacao (7919449) ==
+checar_integridade.sh exit=0
+linhas OK: 80
+
+== conferencia binaria remota (raw.githubusercontent) ==
+36a5c40dd3024f682f34243c25f6f72181241c4a836630d0bc95a865c41bc690  /tmp/rem_f4_e1.txt
+36a5c40dd3024f682f34243c25f6f72181241c4a836630d0bc95a865c41bc690  fase4/logs/raw/f4_e1_saida_windows.txt
+BYTE-A-BYTE IDENTICO ao remoto (evidencia verbatim)
+5e3b883f7285d046993b7ef020a46e14088c7b9d4947e03721bffcc8c25050fb  /tmp/rem_f4_rel.txt
+5e3b883f7285d046993b7ef020a46e14088c7b9d4947e03721bffcc8c25050fb  fase4/validacao_cross_cpu_windows.md
+BYTE-A-BYTE IDENTICO ao remoto (relatorio)
+2026-09-02 04:55:55 UTC
