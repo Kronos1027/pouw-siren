@@ -14,3 +14,98 @@ OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
 arquivos alterados/novos: 7
 
 == commit 1: conteúdo da Fase 2 ==
+ create mode 100644 quantizada_b0f90ffe_u16.npy
+ create mode 100644 quantizada_d037aef4_u16.npy
+ create mode 100644 quantizada_extra_60db_b0f90ffe_u16.npy
+COMMIT: d12eb024b4e0c3f0093abb95758d0b203116e51e
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   9e63e61..d12eb02  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+d12eb024b4e0c3f0093abb95758d0b203116e51e	HEAD
+d12eb024b4e0c3f0093abb95758d0b203116e51e	refs/heads/main
+== conferência remota: API GET /repos ==
+full_name: None
+pushed_at: None
+size(KB) : None
+branch   : None
+== PUBLICACAO FASE 2 — MODO 1 — FIM 2026-09-02 03:16:46 UTC ==
+RETESTE API 2026-09-02 03:16:57 UTC
+-- tentativa 1: anonima --
+{"message":"API rate limit exceeded for 8.212.10.159. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
+
+-- tentativa 2: com token (header) --
+full_name : Kronos1027/pouw-siren
+html_url  : https://github.com/Kronos1027/pouw-siren
+pushed_at : 2026-09-02T03:16:45Z
+size(KB)  : 0
+branch    : main
+message   : None
+-- tentativa 3: conteudo do diretorio raiz via API (anonima) --
+entradas na raiz: {'message': "API rate limit exceeded for 8.212.10.159. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)", 'documentation_url': 'https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting'}
+CONFERENCIA CONTEUDO 2026-09-02 03:17:23 UTC
+-- entradas na raiz (API autenticada) --
+entradas na raiz: 28
+ - .gitattributes
+ - .gitignore
+ - README.md
+ - checagem_retreino.py
+ - checagem_torchsave.py
+ - checar_integridade.sh
+ - desafio.py
+ - desafio_8b457d0a.npy
+ - desafio_b0f90ffe.npy
+ - desafio_d037aef4.npy
+ - fase2
+ - hashes.sha256
+ - logs
+ - quantizada_8b457d0a_u16.npy
+ - quantizada_b0f90ffe_u16.npy
+ - quantizada_d037aef4_u16.npy
+ - quantizada_extra_60db_b0f90ffe_u16.npy
+ - receita_8b457d0a.pt
+ - receita_b0f90ffe.pt
+ - receita_d037aef4.pt
+ - receita_extra_60db_b0f90ffe.pt
+ - reconstrucao_8b457d0a.npy
+ - reconstrucao_b0f90ffe.npy
+ - reconstrucao_d037aef4.npy
+ - relatorio_fase1.md
+ - requirements.txt
+ - treinar.py
+ - verificar.py
+-- fase2/ (API autenticada) --
+entradas em fase2/: 22
+ - experimento_caminhos.py
+ - experimento_dificuldade.py
+ - experimento_prefixo.py
+ - experimento_ruido.py
+ - hashes_fase2.sha256
+ - logs
+ - quantizada_alvo40db_b0f90ffe_u16.npy
+ - quantizada_alvo45db_b0f90ffe_u16.npy
+ - quantizada_alvo50db_b0f90ffe_u16.npy
+ - quantizada_alvo55db_b0f90ffe_u16.npy
+ - quantizada_alvo60db_b0f90ffe_u16.npy
+ - quantizada_alvo65db_b0f90ffe_u16.npy
+ - quantizar.py
+ - receita_alvo40db_b0f90ffe.pt
+ - receita_alvo45db_b0f90ffe.pt
+ - receita_alvo50db_b0f90ffe.pt
+ - receita_alvo55db_b0f90ffe.pt
+ - receita_alvo60db_b0f90ffe.pt
+ - receita_alvo65db_b0f90ffe.pt
+ - relatorio_fase2.md
+ - siren_numpy.py
+ - verificar_fase2.py
+-- tamanho de um artefato binario remoto vs local --
+size remoto: 8320 B | sha256 do conteudo decodificado: bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b
+bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b  quantizada_b0f90ffe_u16.npy
+size local: 8320 B
+== PUBLICACAO FASE 2 — MODO 2 — INICIO 2026-09-02 03:17:48 UTC ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+
+== commit 2: log de publicação (etapa7) ==
