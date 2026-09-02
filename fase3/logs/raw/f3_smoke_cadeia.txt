@@ -1,0 +1,48 @@
+== SMOKE CADEIA — INICIO 2026-09-02 03:43:55 UTC ==
+== cadeia.py — PoUW Fase 3 (minerador da cadeia demo, pouw-cadeia-demo-v1) ==
+INICIO 2026-09-02 03:43:56 UTC
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch + verificar_fase2: 1.113 s (à parte das regiões medidas)
+Saída: /home/z/my-project/download/pouw_fase1/fase3/smoke | blocos: 2 | alvo PSNR: 40.0 dB | prefixo: 16 bits | max-épocas: 5000
+Gênese: SHA-256('pouw-cadeia-demo-v1|genesis|v1') = 98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c
+Forward de compromisso: float64, 1 thread (mesmo caminho do verificador) | treino: subprocesso, threads default
+Nonces iniciais: default_rng(20260902) — determinístico (demo)
+
+########## BLOCO 1 ##########
+seed/prev : 98866a9d6cd1cfeb8f530b5be5e5a902…
+desafio   : desafio_01.npy | sha256 87721bb09baebb23d763346ce4844a1d… | comp_desafio e965a50347712b02…
+treino    : 100 épocas | PSNR treino 47.8726 dB | tempo 4.072478 s | receita sha256 349c088aac2ea296…
+compromisso (float64, 1 thread, B=16): cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7
+quantizada: quantizada_01_u16.npy | sha256 0536fb37bc5411c6992fab5f7f75eca4001a5850c7753c72f3027eae8c380c4f
+header    : pouw-cadeia-demo-v1|bloco=1|prev=98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190…|nonce=8512836020888358326
+moagem    : 1,803 tentativas (k=16 bits) em 0.001444 s
+hash_bloco: 000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0
+PSNR verificação (float64 vs desafio): 47.8726 dB | parede do bloco: 6.081343 s
+
+########## BLOCO 2 ##########
+seed/prev : 000058a7496dd7e54e5619d5f4b51cc5…
+desafio   : desafio_02.npy | sha256 ef50edfd8bfc64bf38cbbe260cb6e8bb… | comp_desafio 76c57a84dfeeba97…
+treino    : 100 épocas | PSNR treino 48.4494 dB | tempo 3.916112 s | receita sha256 a868cdb10b4e0e4c…
+compromisso (float64, 1 thread, B=16): 42f0ada7d2559fdd87898fd5b624e0572e16920c069d6b0890d4435312c86147
+quantizada: quantizada_02_u16.npy | sha256 8e091143d8c463ed6c80257cdace1fa080682ecd05d694912fad9dab86112d1f
+header    : pouw-cadeia-demo-v1|bloco=2|prev=000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4…|nonce=5769944070187738683
+moagem    : 146,593 tentativas (k=16 bits) em 0.108379 s
+hash_bloco: 0000ca2bca5af597f4ff6ad70eb5f41591358fc9feba873ddf5234372714f44d
+PSNR verificação (float64 vs desafio): 48.4494 dB | parede do bloco: 5.923895 s
+
+======== TABELA-RESUMO DA MINERAÇÃO (tudo medido AQUI) ========
+bloco | épocas | PSNR verif | treino (s) | moagem (s) |   tentativas | compromisso (16) | hash_bloco (16)
+----------------------------------------------------------------------------------------------------------------------------------
+    1 |    100 |    47.8726 |   4.072478 |   0.001444 |        1,803 | cd579702b18e133e… | 000058a7496dd7e5…
+    2 |    100 |    48.4494 |   3.916112 |   0.108379 |      146,593 | 42f0ada7d2559fdd… | 0000ca2bca5af597…
+
+cadeia.json salvo em: /home/z/my-project/download/pouw_fase1/fase3/smoke/cadeia.json | SHA-256: 9f2ea912d2b4c30d138e29077ffcc4c93bdeb084ee24c40c57298fa9622f773e
+SOMA treino (útil): 7.988590 s | SOMA moagem (queima): 0.109823 s | SOMA forward+quant: 0.041764 s | SOMA desafio: 0.001846 s
+PAREDE de mineração (2 blocos): 12.005639 s
+Tempo total do script (incl. import): 13.124836 s
+FIM 2026-09-02 03:44:08 UTC
+
+real	0m13.871s
+user	0m13.469s
+sys	0m2.373s
+== SMOKE CADEIA — FIM 2026-09-02 03:44:09 UTC ==

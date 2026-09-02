@@ -1,0 +1,40 @@
+== SMOKE LOTE — INICIO 2026-09-02 03:44:31 UTC ==
+== experimento_lote.py — PoUW Fase 3, E6 (lote persistente vs frio) ==
+INICIO 2026-09-02 03:44:31 UTC
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Cadeia: /home/z/my-project/download/pouw_fase1/fase3/smoke | blocos: 2 | repetições do lote: 3
+Import do PyTorch + verificar_fase2 + verificar_cadeia: 1.353 s (1×; amortizado no lote)
+
+-------- (1) LOTE PERSISTENTE (1 processo; R passadas sobre a cadeia inteira) --------
+  passada 1/3: 0.045837 s | cadeia VÁLIDA | 2 blocos
+  passada 2/3: 0.032099 s | cadeia VÁLIDA | 2 blocos
+  passada 3/3: 0.033429 s | cadeia VÁLIDA | 2 blocos
+  mediana: 0.033429 s | por bloco: 0.016714 s | throughput: 59.83 blocos/s
+
+-------- (2) FRIO-CADEIA (1 subprocesso novo; importa torch; N blocos) --------
+  verificação interna (sem import): 0.039468 s | parede do subprocesso: 1.142067 s | cadeia VÁLIDA
+
+-------- (3) FRIO-POR-BLOCO (N subprocessos novos, 1 por bloco) --------
+  bloco 1: verificação interna 0.025526 s | parede 1.136371 s
+  bloco 2: verificação interna 0.027335 s | parede 1.148727 s
+  SOMA interna: 0.052861 s | SOMA paredes: 2.285098 s | por bloco (parede): 1.142549 s
+
+======== TABELA-RESUMO E6 (tudo medido; N = blocos da cadeia) ========
+modo               |  verif. total (s) |  parede total (s) | por bloco (s) |  blocos/s
+------------------------------------------------------------------------------------------
+lote persistente   |          0.033429 |          1.385974 |      0.016714 |     59.83
+frio-cadeia        |          0.039468 |          1.142067 |      0.571033 |      1.75
+frio-por-bloco     |          0.052861 |          2.285098 |      1.142549 |      0.88
+
+LEITURA (dado; interpretação no relatório):
+  - import do PyTorch medido aqui: 1.353 s = 40× o tempo de verificar 2 blocos em lote
+  - custo por bloco: lote 16.7 ms vs frio-por-bloco 1142.5 ms de parede (68.4× mais caro o frio)
+  - tempo de mineração da cadeia (registrado no cadeia.json): 12.005639 s → razão mineração/lote = 359.1×
+
+Tempo total do experimento (parede): 6.436 s
+FIM 2026-09-02 03:44:37 UTC
+
+real	0m6.854s
+user	0m6.647s
+sys	0m0.485s
+== SMOKE LOTE — FIM 2026-09-02 03:44:38 UTC ==

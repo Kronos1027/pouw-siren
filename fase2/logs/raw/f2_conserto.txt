@@ -48,3 +48,25 @@ OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
  M fase2/logs/raw/f2_conserto.txt
 
 == commit final: log bruto do conserto (auto-referência) ==
+[main a1db978] Etapa 8 (fecho): log bruto do conserto do E2 (evidências + push + conferência)
+ 1 file changed, 27 insertions(+)
+COMMIT: a1db97821292221f158bcaf7543a33737e674839
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   a74b272..a1db978  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+a1db97821292221f158bcaf7543a33737e674839	HEAD
+a1db97821292221f158bcaf7543a33737e674839	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T03:36:12Z
+branch   : main
+message  : None
+
+== estado final ==
+ M fase2/logs/raw/f2_conserto.txt
+  fase2/logs/raw/f2_e2_ruido.txt
+  fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+total de arquivos versionados: 102
+== CONserto E2 — MODO 2 — FIM 2026-09-02 03:36:14 UTC ==

@@ -1,0 +1,83 @@
+== E6 INVENTARIO — INICIO 2026-09-02 03:53:02 UTC ==
+
+== tamanhos (du -sb, bytes) ==
+1450113	fase3/cadeia_demo
+362925	fase3/smoke
+41666	fase3/logs
+
+== arquivos da cadeia oficial ==
+ 
+13513 cadeia.json
+32896 desafio_01.npy
+32896 desafio_02.npy
+32896 desafio_03.npy
+32896 desafio_04.npy
+32896 desafio_05.npy
+32896 desafio_06.npy
+32896 desafio_07.npy
+32896 desafio_08.npy
+8320 quantizada_01_u16.npy
+8320 quantizada_02_u16.npy
+8320 quantizada_03_u16.npy
+8320 quantizada_04_u16.npy
+8320 quantizada_05_u16.npy
+8320 quantizada_06_u16.npy
+8320 quantizada_07_u16.npy
+8320 quantizada_08_u16.npy
+138359 receita_01.pt
+138359 receita_02.pt
+138359 receita_03.pt
+138359 receita_04.pt
+138359 receita_05.pt
+138359 receita_06.pt
+138359 receita_07.pt
+138359 receita_08.pt
+
+== resumo por tipo (cadeia oficial, 8 blocos) ==
+  cadeia.json            n= 1 | total   13,513 B | média   13,513.0 B
+  desafio.npy            n= 8 | total  263,168 B | média   32,896.0 B
+  quantizada.npy         n= 8 | total   66,560 B | média    8,320.0 B
+  receita.pt             n= 8 | total 1,106,872 B | média  138,359.0 B
+  TOTAL cadeia oficial (8 blocos): 1,450,113 B = 1.38 MiB → 181,264 B/bloco
+
+== áncoras SHA-256 da Fase 3 (37 artefatos) ==
+37 fase3/hashes_fase3.sha256
+fase3/cadeia.py: OK
+fase3/verificar_cadeia.py: OK
+fase3/teste_negativo.py: OK
+fase3/experimento_lote.py: OK
+fase3/experimento_retreino.py: OK
+fase3/cadeia_demo/cadeia.json: OK
+fase3/cadeia_demo/desafio_01.npy: OK
+fase3/cadeia_demo/desafio_02.npy: OK
+fase3/cadeia_demo/desafio_03.npy: OK
+fase3/cadeia_demo/desafio_04.npy: OK
+fase3/cadeia_demo/desafio_05.npy: OK
+fase3/cadeia_demo/desafio_06.npy: OK
+fase3/cadeia_demo/desafio_07.npy: OK
+fase3/cadeia_demo/desafio_08.npy: OK
+fase3/cadeia_demo/receita_01.pt: OK
+fase3/cadeia_demo/receita_02.pt: OK
+fase3/cadeia_demo/receita_03.pt: OK
+fase3/cadeia_demo/receita_04.pt: OK
+fase3/cadeia_demo/receita_05.pt: OK
+fase3/cadeia_demo/receita_06.pt: OK
+fase3/cadeia_demo/receita_07.pt: OK
+fase3/cadeia_demo/receita_08.pt: OK
+fase3/cadeia_demo/quantizada_01_u16.npy: OK
+fase3/cadeia_demo/quantizada_02_u16.npy: OK
+fase3/cadeia_demo/quantizada_03_u16.npy: OK
+fase3/cadeia_demo/quantizada_04_u16.npy: OK
+fase3/cadeia_demo/quantizada_05_u16.npy: OK
+fase3/cadeia_demo/quantizada_06_u16.npy: OK
+fase3/cadeia_demo/quantizada_07_u16.npy: OK
+fase3/cadeia_demo/quantizada_08_u16.npy: OK
+fase3/smoke/cadeia.json: OK
+fase3/smoke/desafio_01.npy: OK
+fase3/smoke/desafio_02.npy: OK
+fase3/smoke/receita_01.pt: OK
+fase3/smoke/receita_02.pt: OK
+fase3/smoke/quantizada_01_u16.npy: OK
+fase3/smoke/quantizada_02_u16.npy: OK
+
+== E6 INVENTARIO — FIM 2026-09-02 03:53:02 UTC ==

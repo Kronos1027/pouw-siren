@@ -1,0 +1,55 @@
+== E5 RETREINO — INICIO 2026-09-02 03:48:49 UTC ==
+== experimento_retreino.py — PoUW Fase 3, E5 (determinismo do re-treino) ==
+INICIO 2026-09-02 03:48:49 UTC
+Python 3.12.14
+PyTorch 2.14.0+cpu | threads default visíveis: 2
+Gatilho: bloco 1 da cadeia reproduziu bit-a-bit (smoke × oficial); bloco 2 divergiu (max|Δ| pesos 2.8e-06).
+Artefatos de diagnóstico em: /home/z/my-project/download/pouw_fase1/fase3/.tmp_retreino (oficiais intocados)
+
+-------- réplica 1..4 do desafio A (bloco 2; threads default) --------
+  treino receita_A1.pt: 5.65 s de parede | PSNR final 48.4494 dB
+  treino receita_A2.pt: 5.85 s de parede | PSNR final 48.4494 dB
+  treino receita_A3.pt: 5.90 s de parede | PSNR final 48.4494 dB
+  treino receita_A4.pt: 5.66 s de parede | PSNR final 48.4494 dB
+
+-------- réplica 5..6 do desafio A (OMP_NUM_THREADS=1) --------
+  treino receita_A_omp1_1.pt (OMP_NUM_THREADS=1): 5.97 s de parede | PSNR final 48.4494 dB
+  treino receita_A_omp1_2.pt (OMP_NUM_THREADS=1): 5.78 s de parede | PSNR final 48.4494 dB
+
+-------- réplica 1..2 do desafio B (bloco 1; threads default) --------
+  treino receita_B1.pt: 5.93 s de parede | PSNR final 47.8726 dB
+  treino receita_B2.pt: 6.24 s de parede | PSNR final 47.8726 dB
+
+-------- comparações (contra a receita OFICIAL da cadeia) --------
+[A = desafio_02 / contraexemplo]
+  oficial_A vs réplica A1 (default): BIT-IDÊNTICOS (8/8 tensores)
+  oficial_A vs réplica A2 (default): BIT-IDÊNTICOS (8/8 tensores)
+  oficial_A vs réplica A3 (default): BIT-IDÊNTICOS (8/8 tensores)
+  oficial_A vs réplica A4 (default): BIT-IDÊNTICOS (8/8 tensores)
+  oficial_A vs réplica A_omp1_1 (1 thread): DIFERENTES | max|Δ| sobre os 8 tensores = 5.076e-08
+  oficial_A vs réplica A_omp1_2 (1 thread): DIFERENTES | max|Δ| sobre os 8 tensores = 5.076e-08
+[B = desafio_01 / caso que havia reproduzido]
+  oficial_B vs réplica B1 (default): BIT-IDÊNTICOS (8/8 tensores)
+  oficial_B vs réplica B2 (default): BIT-IDÊNTICOS (8/8 tensores)
+
+-------- comparações entre as réplicas (default) --------
+  réplica A1 vs réplica A2: BIT-IDÊNTICOS (8/8 tensores)
+  réplica A1 vs réplica A3: BIT-IDÊNTICOS (8/8 tensores)
+  réplica A1 vs réplica A4: BIT-IDÊNTICOS (8/8 tensores)
+  réplica B1 vs réplica B2: BIT-IDÊNTICOS (8/8 tensores)
+
+-------- leitura factual --------
+  - O consenso da cadeia NÃO depende do re-treino: o compromisso é sobre a receita
+    publicada (o verificador faz forward do .pt, nunca re-treina).
+  - Divergências ~1e-06 no re-treino são a mesma classe de ruído float32 que a
+    spec pouw-quant-v1 (float64 + B=16) absorve no lado da verificação.
+
+Artefatos de diagnóstico removidos (a evidência é este log + o script).
+Tempo total: 46.998 s (8 treinos em subprocessos)
+FIM 2026-09-02 03:49:37 UTC
+
+real	0m48.650s
+user	0m47.226s
+sys	0m7.526s
+codigo de saida: 0
+== E5 RETREINO — FIM 2026-09-02 03:49:37 UTC ==

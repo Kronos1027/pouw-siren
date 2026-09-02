@@ -1,0 +1,121 @@
+== E1 CADEIA OFICIAL — INICIO 2026-09-02 03:44:58 UTC ==
+== cadeia.py — PoUW Fase 3 (minerador da cadeia demo, pouw-cadeia-demo-v1) ==
+INICIO 2026-09-02 03:44:59 UTC
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch + verificar_fase2: 1.157 s (à parte das regiões medidas)
+Saída: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo | blocos: 8 | alvo PSNR: 40.0 dB | prefixo: 16 bits | max-épocas: 5000
+Gênese: SHA-256('pouw-cadeia-demo-v1|genesis|v1') = 98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c
+Forward de compromisso: float64, 1 thread (mesmo caminho do verificador) | treino: subprocesso, threads default
+Nonces iniciais: default_rng(20260902) — determinístico (demo)
+
+########## BLOCO 1 ##########
+seed/prev : 98866a9d6cd1cfeb8f530b5be5e5a902…
+desafio   : desafio_01.npy | sha256 87721bb09baebb23d763346ce4844a1d… | comp_desafio e965a50347712b02…
+treino    : 100 épocas | PSNR treino 47.8726 dB | tempo 4.040129 s | receita sha256 6db808ccdfc21928…
+compromisso (float64, 1 thread, B=16): cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7
+quantizada: quantizada_01_u16.npy | sha256 0536fb37bc5411c6992fab5f7f75eca4001a5850c7753c72f3027eae8c380c4f
+header    : pouw-cadeia-demo-v1|bloco=1|prev=98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190…|nonce=8512836020888358326
+moagem    : 1,803 tentativas (k=16 bits) em 0.001426 s
+hash_bloco: 000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0
+PSNR verificação (float64 vs desafio): 47.8726 dB | parede do bloco: 5.968364 s
+
+########## BLOCO 2 ##########
+seed/prev : 000058a7496dd7e54e5619d5f4b51cc5…
+desafio   : desafio_02.npy | sha256 ef50edfd8bfc64bf38cbbe260cb6e8bb… | comp_desafio 76c57a84dfeeba97…
+treino    : 100 épocas | PSNR treino 48.4494 dB | tempo 4.178929 s | receita sha256 263c1242f1f306a3…
+compromisso (float64, 1 thread, B=16): 0fff8405892f2d0fa4732d82091d4672de25ad5db72af82e8748b24347a79a8f
+quantizada: quantizada_02_u16.npy | sha256 4d7d51b64a0a5b7e032adc2e7222d913586b73771b052ac663826cf13cc340ce
+header    : pouw-cadeia-demo-v1|bloco=2|prev=000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4…|nonce=5769944070187636859
+moagem    : 44,769 tentativas (k=16 bits) em 0.033429 s
+hash_bloco: 0000272552967f9f15c771106b059f86e12405bd09724d4863233500e19ffd7b
+PSNR verificação (float64 vs desafio): 48.4494 dB | parede do bloco: 6.227045 s
+
+########## BLOCO 3 ##########
+seed/prev : 0000272552967f9f15c771106b059f86…
+desafio   : desafio_03.npy | sha256 1dc658a201b3272ef014b49e92378bee… | comp_desafio b7cf63fafd73d09b…
+treino    : 100 épocas | PSNR treino 48.6712 dB | tempo 4.103007 s | receita sha256 2a11128e22e73578…
+compromisso (float64, 1 thread, B=16): 7cd2df64afce402e3b0e4253f49866972c75309aef0a6d8fcbc646eb687dd830
+quantizada: quantizada_03_u16.npy | sha256 dfecc7b5474aba72a02d062cc359d75828a4f573ede6df771c4bebe242d389ef
+header    : pouw-cadeia-demo-v1|bloco=3|prev=0000272552967f9f15c771106b059f86e12405bd09724d4…|nonce=1678674862399428867
+moagem    : 40,895 tentativas (k=16 bits) em 0.029885 s
+hash_bloco: 00001fd640b0ff3a80b065b76b810b41d24aea3059813272b16cbb5e89190d0d
+PSNR verificação (float64 vs desafio): 48.6712 dB | parede do bloco: 6.038672 s
+
+########## BLOCO 4 ##########
+seed/prev : 00001fd640b0ff3a80b065b76b810b41…
+desafio   : desafio_04.npy | sha256 bd075d9837ad1d10de7eeb17c9f5ab6c… | comp_desafio d46846da1778ba04…
+treino    : 100 épocas | PSNR treino 48.4106 dB | tempo 3.878736 s | receita sha256 0679dd216187eb79…
+compromisso (float64, 1 thread, B=16): f388b1c19f74c7ab6a66136b39698115832bc72956b726c77188c471f8b83cd5
+quantizada: quantizada_04_u16.npy | sha256 713e9a00daf9f4339389837dfb78a8b76d873fe5da18192fd7a041654b6c9bce
+header    : pouw-cadeia-demo-v1|bloco=4|prev=00001fd640b0ff3a80b065b76b810b41d24aea305981327…|nonce=8779485687556332144
+moagem    : 60,292 tentativas (k=16 bits) em 0.043657 s
+hash_bloco: 0000200bf1aaad7a5e1d2934c80d255777d4b7399f3c87ca7ebfb7fcca993dd8
+PSNR verificação (float64 vs desafio): 48.4106 dB | parede do bloco: 5.818804 s
+
+########## BLOCO 5 ##########
+seed/prev : 0000200bf1aaad7a5e1d2934c80d2557…
+desafio   : desafio_05.npy | sha256 082b1758b61fe914803c436514e7871a… | comp_desafio 88c6fa777d16a4cb…
+treino    : 100 épocas | PSNR treino 48.8548 dB | tempo 4.069102 s | receita sha256 82578f044e44bb5e…
+compromisso (float64, 1 thread, B=16): 5cd04941ad0e99764aac17c252a1c05be2940fafed535e72e16abf285dd353f5
+quantizada: quantizada_05_u16.npy | sha256 cc112030e05bf8a4f06c6d5689b37a6358aab55bf98ba722f468c245533c1237
+header    : pouw-cadeia-demo-v1|bloco=5|prev=0000200bf1aaad7a5e1d2934c80d255777d4b7399f3c87c…|nonce=7555902614855671189
+moagem    : 7,874 tentativas (k=16 bits) em 0.005803 s
+hash_bloco: 0000618054eaeb303a53bc0f2b6a152766fc9e4d57670b9a0d528908412aca59
+PSNR verificação (float64 vs desafio): 48.8548 dB | parede do bloco: 6.088587 s
+
+########## BLOCO 6 ##########
+seed/prev : 0000618054eaeb303a53bc0f2b6a1527…
+desafio   : desafio_06.npy | sha256 47dd16e519e0d24209d88fd032d6fa76… | comp_desafio 39985dad67983316…
+treino    : 100 épocas | PSNR treino 50.1790 dB | tempo 3.987591 s | receita sha256 a0ca0275873736f8…
+compromisso (float64, 1 thread, B=16): d91f50f3699d5bfa8bc55613e170f7e74ca325fb2972a9041d710f2bea70169b
+quantizada: quantizada_06_u16.npy | sha256 c4332c3e2de349c1a9219e33496a88743efae4706b0bda6fa6a450f43cd9e0d0
+header    : pouw-cadeia-demo-v1|bloco=6|prev=0000618054eaeb303a53bc0f2b6a152766fc9e4d57670b9…|nonce=4799630824890612040
+moagem    : 52,611 tentativas (k=16 bits) em 0.038832 s
+hash_bloco: 00007efe852b4e76c84366938852d9dd3fca08abc000ce86ccbcceea8159eb6b
+PSNR verificação (float64 vs desafio): 50.1790 dB | parede do bloco: 6.055184 s
+
+########## BLOCO 7 ##########
+seed/prev : 00007efe852b4e76c84366938852d9dd…
+desafio   : desafio_07.npy | sha256 a2a8831b08eed1807c35ebd9bd3c2425… | comp_desafio 57b202c9f0e10c47…
+treino    : 100 épocas | PSNR treino 47.0671 dB | tempo 4.116510 s | receita sha256 11bcfe3ac2b0bf60…
+compromisso (float64, 1 thread, B=16): f0d4ab32fe138b9174bdb66d780003c36e97bf9360ad44fe3a871a9d277ea3a6
+quantizada: quantizada_07_u16.npy | sha256 34033d56fb72ecfdd380e2baa49e7edf148b612bc3e8b70f196271401f6a3582
+header    : pouw-cadeia-demo-v1|bloco=7|prev=00007efe852b4e76c84366938852d9dd3fca08abc000ce8…|nonce=5411960441639163431
+moagem    : 197,328 tentativas (k=16 bits) em 0.152859 s
+hash_bloco: 00005d5d0b6304e3bfa10c7ab230ff869e1482a352166ca3a5f3e89266544f72
+PSNR verificação (float64 vs desafio): 47.0671 dB | parede do bloco: 6.300247 s
+
+########## BLOCO 8 ##########
+seed/prev : 00005d5d0b6304e3bfa10c7ab230ff86…
+desafio   : desafio_08.npy | sha256 69d7597162ba8cb7d751fb21dd9603ec… | comp_desafio 64e2154a2d202194…
+treino    : 100 épocas | PSNR treino 44.7247 dB | tempo 4.046556 s | receita sha256 db49f7a930281b84…
+compromisso (float64, 1 thread, B=16): eece79b0314d8d040f5d5e4d410a0b7ba9efe022fa7594a6f02f9c68d0f9a917
+quantizada: quantizada_08_u16.npy | sha256 a6527d9070a227bdc48220480e458222d10c0bfa38fa7d3ac67f7c95e80ab1e6
+header    : pouw-cadeia-demo-v1|bloco=8|prev=00005d5d0b6304e3bfa10c7ab230ff869e1482a352166ca…|nonce=8264691305244295128
+moagem    : 27,385 tentativas (k=16 bits) em 0.020301 s
+hash_bloco: 00001c19b2ff024c21b55cf719ce0de3e889fcdbd84b3c5723d18b2ff8c39c09
+PSNR verificação (float64 vs desafio): 44.7247 dB | parede do bloco: 6.108852 s
+
+======== TABELA-RESUMO DA MINERAÇÃO (tudo medido AQUI) ========
+bloco | épocas | PSNR verif | treino (s) | moagem (s) |   tentativas | compromisso (16) | hash_bloco (16)
+----------------------------------------------------------------------------------------------------------------------------------
+    1 |    100 |    47.8726 |   4.040129 |   0.001426 |        1,803 | cd579702b18e133e… | 000058a7496dd7e5…
+    2 |    100 |    48.4494 |   4.178929 |   0.033429 |       44,769 | 0fff8405892f2d0f… | 0000272552967f9f…
+    3 |    100 |    48.6712 |   4.103007 |   0.029885 |       40,895 | 7cd2df64afce402e… | 00001fd640b0ff3a…
+    4 |    100 |    48.4106 |   3.878736 |   0.043657 |       60,292 | f388b1c19f74c7ab… | 0000200bf1aaad7a…
+    5 |    100 |    48.8548 |   4.069102 |   0.005803 |        7,874 | 5cd04941ad0e9976… | 0000618054eaeb30…
+    6 |    100 |    50.1790 |   3.987591 |   0.038832 |       52,611 | d91f50f3699d5bfa… | 00007efe852b4e76…
+    7 |    100 |    47.0671 |   4.116510 |   0.152859 |      197,328 | f0d4ab32fe138b91… | 00005d5d0b6304e3…
+    8 |    100 |    44.7247 |   4.046556 |   0.020301 |       27,385 | eece79b0314d8d04… | 00001c19b2ff024c…
+
+cadeia.json salvo em: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/cadeia.json | SHA-256: 5b7b350101559fac9fbdbed7acd83e630c51b36c34900a611dbe07560daba796
+SOMA treino (útil): 32.420560 s | SOMA moagem (queima): 0.326192 s | SOMA forward+quant: 0.158685 s | SOMA desafio: 0.008557 s
+PAREDE de mineração (8 blocos): 48.607037 s
+Tempo total do script (incl. import): 49.770714 s
+FIM 2026-09-02 03:45:48 UTC
+
+real	0m50.337s
+user	0m50.141s
+sys	0m8.179s
+codigo de saida: 0
+== E1 CADEIA OFICIAL — FIM 2026-09-02 03:45:48 UTC ==

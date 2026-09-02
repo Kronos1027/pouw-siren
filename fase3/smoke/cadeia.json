@@ -1,0 +1,80 @@
+{
+  "spec": "pouw-cadeia-demo-v1",
+  "genesis_pre_imagem": "pouw-cadeia-demo-v1|genesis|v1",
+  "genesis_hash": "98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c",
+  "alvo_psnr": 40.0,
+  "prefixo_bits": 16,
+  "bits_quant": 16,
+  "max_epocas": 5000,
+  "semente_nonce_rng": 20260902,
+  "n_blocos": 2,
+  "blocos": [
+    {
+      "bloco": 1,
+      "prev": "98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c",
+      "seed_desafio": "98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c",
+      "hash_da_seed_gerar_desafio": "5df9731f9276c3b06e332f47101a2715bab86dca09b34ebe248f6024c5010a4a",
+      "arquivo_desafio": "desafio_01.npy",
+      "sha256_desafio_npy": "87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0",
+      "comp_desafio": "e965a50347712b02b391b41a10be0f20b797c90d37a9119341c7476aac35f3c6",
+      "arquivo_receita": "receita_01.pt",
+      "sha256_receita": "349c088aac2ea2962f5f6b1638ab1734bd4883516a61e89af567e3159e7eb79f",
+      "compromisso": "cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7",
+      "arquivo_quantizada": "quantizada_01_u16.npy",
+      "sha256_quantizada": "0536fb37bc5411c6992fab5f7f75eca4001a5850c7753c72f3027eae8c380c4f",
+      "alvo_psnr": 40.0,
+      "epocas": 100,
+      "psnr_treino": 47.8726,
+      "psnr_verificacao": 47.872633552536364,
+      "header_sem_nonce": "pouw-cadeia-demo-v1|bloco=1|prev=98866a9d6cd1cfeb8f530b5be5e5a90296337f9eec9c190a418fe8b62357930c|comp=cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7|alvo=40",
+      "nonce": 8512836020888358326,
+      "nonce_inicial": 8512836020888356524,
+      "tentativas_nonce": 1803,
+      "hash_bloco": "000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0",
+      "tempos": {
+        "desafio_s": 0.000994,
+        "treino_s": 4.072478,
+        "forward_quant_s": 0.022047,
+        "moagem_s": 0.001444,
+        "bloco_parede_s": 6.081343
+      }
+    },
+    {
+      "bloco": 2,
+      "prev": "000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0",
+      "seed_desafio": "000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0",
+      "hash_da_seed_gerar_desafio": "06b98266d1e32c8c94c3a23212435eaafc87209171143a7e9c2a2a7043566028",
+      "arquivo_desafio": "desafio_02.npy",
+      "sha256_desafio_npy": "ef50edfd8bfc64bf38cbbe260cb6e8bb997f83952861a07dd6572312afa9082f",
+      "comp_desafio": "76c57a84dfeeba97ef2c56765cb5a7c65e4132803763580cbaf680329652bdfc",
+      "arquivo_receita": "receita_02.pt",
+      "sha256_receita": "a868cdb10b4e0e4c5b1b6f294395898778f12e5af3b2c2cf5b39b08f1bdded03",
+      "compromisso": "42f0ada7d2559fdd87898fd5b624e0572e16920c069d6b0890d4435312c86147",
+      "arquivo_quantizada": "quantizada_02_u16.npy",
+      "sha256_quantizada": "8e091143d8c463ed6c80257cdace1fa080682ecd05d694912fad9dab86112d1f",
+      "alvo_psnr": 40.0,
+      "epocas": 100,
+      "psnr_treino": 48.4494,
+      "psnr_verificacao": 48.44937251383862,
+      "header_sem_nonce": "pouw-cadeia-demo-v1|bloco=2|prev=000058a7496dd7e54e5619d5f4b51cc53719fbee85f1dd4228c11a7bc6de1ad0|comp=42f0ada7d2559fdd87898fd5b624e0572e16920c069d6b0890d4435312c86147|alvo=40",
+      "nonce": 5769944070187738683,
+      "nonce_inicial": 5769944070187592091,
+      "tentativas_nonce": 146593,
+      "hash_bloco": "0000ca2bca5af597f4ff6ad70eb5f41591358fc9feba873ddf5234372714f44d",
+      "tempos": {
+        "desafio_s": 0.000852,
+        "treino_s": 3.916112,
+        "forward_quant_s": 0.019717,
+        "moagem_s": 0.108379,
+        "bloco_parede_s": 5.923895
+      }
+    }
+  ],
+  "resumo_mineracao": {
+    "soma_treino_s": 7.98859,
+    "soma_moagem_s": 0.109823,
+    "soma_forward_quant_s": 0.041764,
+    "soma_desafio_s": 0.001846,
+    "parede_mineracao_s": 12.005639
+  }
+}
