@@ -1,0 +1,54 @@
+# PROVENIÊNCIA (cabeçalho adicionado ao repo pelo agente autor; NÃO faz parte do output)
+#
+# O output abaixo NÃO foi executado pelo agente desta pesquisa. Foi executado pelo
+# DONO DO REPOSITÓRIO (usuário Kronos1027) na máquina local dele — Windows, caminho
+# E:\pesquisa_importante\pesquisadepoof\pouw-siren — e transmitido ao agente via chat
+# em 2026-09-02, como resposta ao convite do relatório Fase 3 §11 ("Como conferir de
+# forma independente"). Protocolo anti-fabricação, item 7: dados de terceiros citados
+# como tais, nunca misturados com medições próprias do agente.
+#
+# Comando relatado pelo usuário (executado na raiz do clone local dele):
+#     python -u fase3/verificar_cadeia.py
+#
+# Sequência de preparação relatada pelo usuário (git, na ordem):
+#     git pull origin main || git pull
+#     git fetch origin; git reset --hard origin/main
+#     git log -n 5 --stat
+#     git config core.autocrlf                (consulta do valor vigente)
+#     git config core.autocrlf false; git checkout-index --force --all
+#     (checagem de integridade das 75 âncoras via one-liner Python equivalente ao
+#      checar_integridade.sh — resumo relatado: F1 15/15, F2 23/23, F3 37/37 = 75/75 OK;
+#      outputs brutos dessa checagem não foram transmitidos, apenas o resumo)
+#
+# O bloco entre as linhas ==== foi preservado VERBATIM (nenhuma edição, incluindo
+# travessões, reticências e acentuação). A conferência formal desses valores contra
+# o cadeia.json oficial está em fase4/logs/raw/f4_e1_conferimento.txt (essa sim,
+# executada pelo agente) e documentada em fase4/validacao_cross_cpu_windows.md.
+#
+======================== INÍCIO DO OUTPUT VERBATIM =========================
+
+== verificar_cadeia.py — PoUW Fase 3 (verificador frio da cadeia, pouw-cadeia-demo-v1) ==
+INICIO 2026-09-02 04:41:11 UTC
+Python 3.11.15 | PyTorch 2.13.0+cpu | NumPy 2.4.3
+Import do PyTorch + verificar_fase2: 9.195 s (à parte da verificação)
+Diretório da cadeia: E:\pesquisa_importante\pesquisadepoof\pouw-siren\fase3\cadeia_demo | apenas bloco: todos
+Checagens: C0 (gênese/spec) + C1–C8 por bloco (ver docstring)
+[bloco 1] VÁLIDO (0.390166 s) | PSNR 47.8726 dB | comp cd579702b18e133e… | hash_bloco 000058a7496dd7e5…
+[bloco 2] VÁLIDO (0.015529 s) | PSNR 48.4494 dB | comp 0fff8405892f2d0f… | hash_bloco 0000272552967f9f…
+[bloco 3] VÁLIDO (0.015242 s) | PSNR 48.6712 dB | comp 7cd2df64afce402e… | hash_bloco 00001fd640b0ff3a…
+[bloco 4] VÁLIDO (0.015209 s) | PSNR 48.4106 dB | comp f388b1c19f74c7ab… | hash_bloco 0000200bf1aaad7a…
+[bloco 5] VÁLIDO (0.017026 s) | PSNR 48.8548 dB | comp 5cd04941ad0e9976… | hash_bloco 0000618054eaeb30…
+[bloco 6] VÁLIDO (0.016882 s) | PSNR 50.1790 dB | comp d91f50f3699d5bfa… | hash_bloco 00007efe852b4e76…
+[bloco 7] VÁLIDO (0.018017 s) | PSNR 47.0671 dB | comp f0d4ab32fe138b91… | hash_bloco 00005d5d0b6304e3…
+[bloco 8] VÁLIDO (0.017179 s) | PSNR 44.7247 dB | comp eece79b0314d8d04… | hash_bloco 00001c19b2ff024c…
+
+-- RESUMO --
+Gênese/spec (C0): OK
+Blocos verificados: 8 | válidos: 8
+Tempo por bloco: min 0.015209 s | máx 0.390166 s | soma 0.505250 s
+TEMPO TOTAL DE VERIFICAÇÃO (carga do JSON -> último PSNR, sem imports): 0.505768 s
+Tempo total do processo (incl. import do PyTorch): 9.700838 s
+RESULTADO: CADEIA VÁLIDA (código 0)
+FIM 2026-09-02 04:41:12 UTC
+
+========================= FIM DO OUTPUT VERBATIM ==========================

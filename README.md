@@ -1,4 +1,4 @@
-# PoUW-SIREN — Proof of Useful Work via compressão neural (Fases 1–3, CPU-only)
+# PoUW-SIREN — Proof of Useful Work via compressão neural (Fases 1–4, CPU-only)
 
 Pesquisa exploratória: usar **compressão neural (SIREN — Implicit Neural Representation)** como
 "trabalho útil" no lugar da queima de hash do Proof-of-Work tradicional. O minerador **treina**
@@ -40,14 +40,15 @@ SHA-256 dos bytes big-endian. Resultados centrais (tudo medido; relatório compl
 
 ```bash
 git clone https://github.com/Kronos1027/pouw-siren.git && cd pouw-siren
-bash checar_integridade.sh                 # 75 âncoras (15 da F1 + 23 da F2 + 37 da F3) → 75× OK
+bash checar_integridade.sh                 # 80 âncoras (15 da F1 + 23 da F2 + 37 da F3 + 5 da F4) → 80× OK
 
 python3 fase2/verificar_fase2.py receita_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 40
 # esperado (predição registrada ANTES de você rodar — relatório §10):
 #   PSNR: 49.6253 dB
 #   COMPROMISSO QUANTIZADO: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
 #   RESULTADO: VÁLIDO (código 0)
-# (o hash float32 da Fase 1 divergiu na sua CPU; o hash QUANTIZADO deve bater bit-a-bit)
+# (o hash float32 da Fase 1 divergiu na sua CPU; o hash QUANTIZADO deve bater bit-a-bit —
+#  CONFIRMADO na Fase 4 na máquina Windows do dono do repo, ver fase4/)
 
 sha256sum quantizada_b0f90ffe_u16.npy
 # esperado: bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b
@@ -55,6 +56,32 @@ sha256sum quantizada_b0f90ffe_u16.npy
 
 Compromissos oficiais das 4 receitas publicadas (tabela completa no relatório §9):
 `93ad1d43…` (seed 001) · `b4b6df84…` (seed 002) · `8397befc…` (seed 003) · `92b6fe06…` (extra 60 dB).
+
+---
+
+## Fase 4 (2026-09-02): validação cross-CPU EXTERNA da cadeia (Windows) — predições confirmadas
+
+**Primeiro item do roadmap F4, executado pelo DONO do repo na máquina dele** (Windows, caminho
+`E:\…`, Python 3.11.15, PyTorch 2.13.0+cpu, NumPy 2.4.3 — **SO, Python, PyTorch e NumPy todos
+diferentes** do ambiente de mineração; dado de terceiro, item 7 do protocolo — o agente só
+gerou a conferência formal):
+
+- **75/75 âncoras de integridade OK** no clone dele (equivalente Python do checar_integridade.sh).
+- **`python fase3/verificar_cadeia.py` → 8/8 blocos VÁLIDOS, código 0** (0,5058 s para a cadeia
+  inteira, sem imports; ~15–18 ms/bloco após o primeiro). A MESMA CPU cujo hash float32
+  divergira na Fase 1 (7,15e-07) agora reproduz os compromissos `pouw-quant-v1` **bit-a-bit**
+  (C5 compara os 64 hex completos dentro do verificador).
+- **As 3 predições registradas ANTES (relatório F3 §11) confirmadas**: (a) compromissos
+  bit-a-bit; (b) C2 com a libm do Windows; (c) hash de bytes dos .npy.
+- **Conferência formal do agente:** `fase4/conferir_saida.py` (script novo, reutilizável por
+  qualquer leitor) × output verbatim → **8/8 CONFERE** (log bruto em
+  `fase4/logs/raw/f4_e1_conferimento.txt`).
+- Evidência completa: `fase4/validacao_cross_cpu_windows.md` +
+  `fase4/logs/raw/f4_e1_saida_windows.txt` (output verbatim com cabeçalho de proveniência).
+
+→ **A limitação 2 (portabilidade do hash) está fechada com validação externa**: float64 + B=16
+produz o mesmo compromisso em SO/stack/hardware diferentes. Resíduo teórico restante ~1e-15
+(roadmap: forward inteiro sem BLAS).
 
 ---
 
@@ -131,7 +158,7 @@ pip install torch --index-url https://download.pytorch.org/whl/cpu
 git clone https://github.com/Kronos1027/pouw-siren.git
 cd pouw-siren
 
-bash checar_integridade.sh        # 75× OK (Fases 1, 2 e 3)
+bash checar_integridade.sh        # 80× OK (Fases 1, 2, 3 e 4)
 
 # Fase 1 (float32 — na MESMA máquina os hashes batem; em OUTRA CPU pode divergir no último bit)
 python3 -u verificar.py receita_b0f90ffe.pt desafio_b0f90ffe.npy
@@ -145,9 +172,16 @@ python3 -u fase2/verificar_fase2.py receita_b0f90ffe.pt desafio_b0f90ffe.npy --a
 python3 -u fase3/verificar_cadeia.py
 #   [bloco 1] VÁLIDO … comp cd579702b18e133e… | hash_bloco 000058a7496dd7e5…
 #   RESULTADO: CADEIA VÁLIDA (código 0)
+
+# Fase 4 (confere a SUA saída contra a cadeia oficial — 8/8 CONFERE)
+python3 -u fase3/verificar_cadeia.py > minha_saida.txt 2>&1
+python3 -u fase4/conferir_saida.py minha_saida.txt
 ```
 
 Windows: `certutil -hashfile receita_b0f90ffe.pt SHA256` e compare com `hashes.sha256`.
+Dica Windows (da validação da F4): se as âncoras falharem logo após o clone, normalize o
+fim-de-linha antes de concluir divergência — `git config core.autocrlf false` seguido de
+`git checkout-index --force --all` (foi o que o validador da F4 fez antes de 75/75 OK).
 
 ## Reproduzir do zero
 
@@ -180,6 +214,9 @@ O que já foi checado nesta máquina (evidência nos logs):
   (RNG determinístico; `fase2/logs/raw/f2_e2_ruido*.txt`).
 - F3: cadeia de 8 blocos verificada 8/8 em processo frio; o MESMO bloco 1 (comp `cd579702…`)
   reproduzido bit-a-bit entre o smoke e a mineração oficial; 6/6 fraudes rejeitadas.
+- F4: output cross-CPU do dono do repo (Windows, stack inteiro diferente) conferido
+  programaticamente contra o cadeia.json oficial — 8/8 blocos CONFEREM (prefixos, PSNR,
+  status; `fase4/logs/raw/f4_e1_conferimento.txt`).
 
 ## O que tem neste repositório
 
@@ -209,17 +246,22 @@ pouw-siren/
 │   ├── receita_alvo*.pt (6)   ← receitas da varredura E4
 │   ├── quantizada_alvo* (6)   ← quantizações correspondentes
 │   └── logs/etapa6-8 + logs/raw/*.txt  ← outputs brutos (inclusive o bug corrigido e o conserto E2)
-└── fase3/
-    ├── relatorio_fase3.md     ← F3: cadeia, E1–E6, 13 limitações
-    ├── hashes_fase3.sha256    ← 37 âncoras da F3
-    ├── cadeia.py              ← MINERADOR da cadeia (pouw-cadeia-demo-v1)
-    ├── verificar_cadeia.py    ← VERIFICADOR frio (C0 + C1–C8, código 0/1; --apenas-bloco N)
-    ├── teste_negativo.py      ← E4: 6 adulterações → 6/6 rejeições
-    ├── experimento_lote.py    ← E3: lote persistente vs frio
-    ├── experimento_retreino.py← E5: determinismo do re-treino (contraexemplo)
-    ├── cadeia_demo/           ← cadeia OFICIAL: 8 blocos (desafio+receita+quantizada ×8, cadeia.json)
-    ├── smoke/                 ← smoke de 2 blocos (evidência de processo)
-    └── logs/etapa9 + logs/raw/*.txt  ← outputs brutos (inclusive a execução com expectativa errada)
+├── fase3/
+│   ├── relatorio_fase3.md     ← F3: cadeia, E1–E6, 13 limitações
+│   ├── hashes_fase3.sha256    ← 37 âncoras da F3
+│   ├── cadeia.py              ← MINERADOR da cadeia (pouw-cadeia-demo-v1)
+│   ├── verificar_cadeia.py    ← VERIFICADOR frio (C0 + C1–C8, código 0/1; --apenas-bloco N)
+│   ├── teste_negativo.py      ← E4: 6 adulterações → 6/6 rejeições
+│   ├── experimento_lote.py    ← E3: lote persistente vs frio
+│   ├── experimento_retreino.py← E5: determinismo do re-treino (contraexemplo)
+│   ├── cadeia_demo/           ← cadeia OFICIAL: 8 blocos (desafio+receita+quantizada ×8, cadeia.json)
+│   ├── smoke/                 ← smoke de 2 blocos (evidência de processo)
+│   └── logs/etapa9 + logs/raw/*.txt  ← outputs brutos (inclusive a execução com expectativa errada)
+└── fase4/
+    ├── validacao_cross_cpu_windows.md ← F4: validação externa (Windows) — 9 seções
+    ├── hashes_fase4.sha256    ← 5 âncoras da F4
+    ├── conferir_saida.py      ← confere output do verificar_cadeia.py vs cadeia oficial
+    └── logs/etapa11 + logs/raw/*.txt ← output VERBATIM do validador + conferência do agente
 ```
 
 `desafio.py` é o código do prompt original com **2 correções mínimas documentadas**
@@ -231,8 +273,9 @@ pouw-siren/
    excluem imports **dos dois lados** (simétrico e declarado). Com runtime pré-carregado,
    a razão é a da tabela. A F3 mediu o caminho de produção: lote persistente → 15,6 ms/bloco.
 2. ~~Hash de saída float32 não é portável entre CPUs~~ → **resolvido na Fase 2 pela spec
-   pouw-quant-v1** (float64 + B=16), com margem de ~5 ordens de grandeza medida — pendente
-   apenas a confirmação cross-CPU do leitor (README acima / relatório F2 §10).
+   pouw-quant-v1** (float64 + B=16), com margem de ~5 ordens de grandeza medida — e
+   **CONFIRMADO por validação externa na Fase 4** (dono do repo, Windows, stack inteiro
+   diferente: 8/8 compromissos bit-a-bit).
 3. Nesta escala não há economia de bytes (receita 138 kB vs desafio 33 kB) — a Fase 1 mede
    assimetria de **tempo**, não razão de compressão.
 4. 40 dB é "fácil" para esta família de desafios (época 100); a F2 mediu a curva até 65 dB
@@ -245,10 +288,11 @@ pouw-siren/
 7. A cadeia demo é LINEAR (sem forks/reorgs/premiação) e o k=16 é baixo de propósito — o
    esqueleto demonstra encadeamento e custos, não economia de consenso multi-minerador.
 
-## Próximos passos (Fase 4 — candidatos)
+## Próximos passos (roadmap — item 1 da F4 EXECUTADO, restantes abertos)
 
-- Confirmação cross-CPU das Fases 2 E 3 por múltiplos leitores (rodar o teste acima e reportar
-  compromissos — a predição da cadeia 8/8 está no relatório F3 §11).
+- ~~Confirmação cross-CPU das Fases 2 E 3 por leitores~~ **EXECUTADO em 2026-09-02 pelo dono
+  do repo (Windows; 8/8 bit-a-bit; fase4/)** — mais leitores = mais força (amostra ainda é
+  n=1 externa; roda `verificar_cadeia.py` + `fase4/conferir_saida.py` e reporte).
 - Forward **exatamente determinístico** (aritmética inteira/fixed-point no forward, sem BLAS)
   para eliminar o resíduo ~1e-15 e a dependência de libm/sin (limitação 2 da F3: C2).
 - Cadeia multi-minerário: forks, escolha de ramo por mais trabalho acumulado, dificuldade
@@ -259,10 +303,10 @@ pouw-siren/
 ## Protocolo anti-fabricação (como esta pesquisa foi conduzida)
 
 1. Nenhum número sem comando realmente executado; o que não rodou está declarado como não-rodado.
-2. Todo métrico vem com o output bruto e integral colado (com timestamps, em `logs/raw/*.txt`
-   e `fase2/logs/raw/*.txt`).
+2. Todo métrico vem com o output bruto e integral colado (com timestamps, em `logs/raw/*.txt`,
+   `fase2/logs/raw/*.txt`, `fase3/logs/raw/*.txt` e `fase4/logs/raw/*.txt`).
 3. Todo artefato tem SHA-256 reportado (`hashes.sha256` + `fase2/hashes_fase2.sha256` +
-   `fase3/hashes_fase3.sha256`) para conferência externa.
+   `fase3/hashes_fase3.sha256` + `fase4/hashes_fase4.sha256`) para conferência externa.
 4. Tempos só de `time`/`time.perf_counter()`, nunca estimados. A única exceção rotulada:
    extrapolações aritméticas do E5, marcadas como EXTRAPOLADO.
 5. Erros reportados completos, sem poda (ver arquivos `*_FALHA.txt`, a execução com bug teórico

@@ -1,0 +1,31 @@
+2026-09-02 04:51:04 UTC
+== conferir_saida.py — PoUW Fase 4: conferência de output vs cadeia oficial ==
+INICIO 2026-09-02 04:51:04 UTC
+Arquivo de saída conferido: /home/z/my-project/download/pouw_fase1/fase4/logs/raw/f4_e1_saida_windows.txt
+Cadeia oficial: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/cadeia.json
+Spec: pouw-cadeia-demo-v1 | blocos oficiais: 8 | alvo PSNR: 40.0 dB | prefixo: 16 bits | B=16
+
+bloco | status   | PSNR      | comp (16 hex)     | hash_bloco (16 hex) | veredito
+---------------------------------------------------------------------------------
+    1 | VÁLIDO   | 47.8726   | cd579702b18e133e  | 000058a7496dd7e5    | CONFERE
+    2 | VÁLIDO   | 48.4494   | 0fff8405892f2d0f  | 0000272552967f9f    | CONFERE
+    3 | VÁLIDO   | 48.6712   | 7cd2df64afce402e  | 00001fd640b0ff3a    | CONFERE
+    4 | VÁLIDO   | 48.4106   | f388b1c19f74c7ab  | 0000200bf1aaad7a    | CONFERE
+    5 | VÁLIDO   | 48.8548   | 5cd04941ad0e9976  | 0000618054eaeb30    | CONFERE
+    6 | VÁLIDO   | 50.1790   | d91f50f3699d5bfa  | 00007efe852b4e76    | CONFERE
+    7 | VÁLIDO   | 47.0671   | f0d4ab32fe138b91  | 00005d5d0b6304e3    | CONFERE
+    8 | VÁLIDO   | 44.7247   | eece79b0314d8d04  | 00001c19b2ff024c    | CONFERE
+
+SUMÁRIO do output: blocos=8, válidos=8 (esperado: 8, 8)
+RESULTADO do output: CADEIA VÁLIDA (código 0)
+
+NOTA: a igualdade COMPLETA (64 hex) de cada compromisso é certificada pela checagem C5 do verificador
+que rodou na máquina de origem (status VÁLIDO por bloco); este script confere o nível impresso
+(prefixos 16 hex + PSNR a 4 decimais) contra o cadeia.json oficial.
+RESULTADO DA CONFERÊNCIA: OK — 100% dos blocos conferem (código 0)
+FIM 2026-09-02 04:51:04 UTC
+
+real	0m0.037s
+user	0m0.026s
+sys	0m0.011s
+2026-09-02 04:51:04 UTC
