@@ -14,3 +14,42 @@ OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
 caminhos alterados/novos: 4
 
 == commit 1: conteúdo da Fase 3 ==
+ create mode 100644 fase3/smoke/receita_01.pt
+ create mode 100644 fase3/smoke/receita_02.pt
+ create mode 100644 fase3/teste_negativo.py
+ create mode 100644 fase3/verificar_cadeia.py
+COMMIT: 3043ba00ec53ef8240f29b93b187ff49074597d9
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   a1db978..3043ba0  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+3043ba00ec53ef8240f29b93b187ff49074597d9	HEAD
+3043ba00ec53ef8240f29b93b187ff49074597d9	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T03:57:57Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase3 (autenticada) ==
+entradas em fase3/: 10
+ - cadeia.py
+ - cadeia_demo
+ - experimento_lote.py
+ - experimento_retreino.py
+ - hashes_fase3.sha256
+ - logs
+ - relatorio_fase3.md
+ - smoke
+ - teste_negativo.py
+ - verificar_cadeia.py
+== PUBLICACAO FASE 3 — MODO 1 — FIM 2026-09-02 03:57:59 UTC ==
+== PUBLICACAO FASE 3 — MODO 2 — INICIO 2026-09-02 03:58:06 UTC ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+
+== status antes do commit final ==
+ M fase3/logs/raw/f3_publicacao.txt
+
+== commit final: logs de publicação (etapa10 + bruto) ==
