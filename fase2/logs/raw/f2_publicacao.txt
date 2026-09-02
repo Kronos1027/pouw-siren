@@ -109,3 +109,64 @@ OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
 
 == commit 2: log de publicação (etapa7) ==
+[main e53dd6a] Etapa 7: log de publicacao da Fase 2 (outputs brutos de auditoria + push + conferencia remota)
+ 2 files changed, 122 insertions(+)
+ create mode 100644 fase2/logs/etapa7_publicacao.md
+COMMIT: e53dd6aedb204a0d30c343c27e1b896c11028e83
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   d12eb02..e53dd6a  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+e53dd6aedb204a0d30c343c27e1b896c11028e83	HEAD
+e53dd6aedb204a0d30c343c27e1b896c11028e83	refs/heads/main
+== conferência remota: API GET /repos ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T03:17:51Z
+size(KB) : 0
+branch   : main
+
+== inventário final do commit (git ls-tree, primeiras linhas) ==
+.gitattributes
+.gitignore
+README.md
+checagem_retreino.py
+checagem_torchsave.py
+checar_integridade.sh
+desafio.py
+desafio_8b457d0a.npy
+desafio_b0f90ffe.npy
+desafio_d037aef4.npy
+fase2/experimento_caminhos.py
+fase2/experimento_dificuldade.py
+fase2/experimento_prefixo.py
+fase2/experimento_ruido.py
+fase2/hashes_fase2.sha256
+fase2/logs/etapa6.md
+fase2/logs/etapa7_publicacao.md
+fase2/logs/raw/f2_e1_caminhos.txt
+fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+fase2/logs/raw/f2_e4_dificuldade.txt
+fase2/logs/raw/f2_e5_prefixo.txt
+fase2/logs/raw/f2_hash_check.txt
+fase2/logs/raw/f2_inventario_hashes.txt
+fase2/logs/raw/f2_publicacao.txt
+fase2/logs/raw/f2_smoke_quantizar.txt
+fase2/logs/raw/f2_smoke_verificar_fase2.txt
+fase2/logs/raw/f2_verif_oficial_8b457d0a.txt
+fase2/logs/raw/f2_verif_oficial_b0f90ffe.txt
+fase2/logs/raw/f2_verif_oficial_d037aef4.txt
+fase2/logs/raw/f2_verif_oficial_extra_60db_b0f90ffe.txt
+total de arquivos versionados: 99
+== PUBLICACAO FASE 2 — MODO 2 — FIM 2026-09-02 03:17:52 UTC ==
+CHECAGEM F2_E2_RUIDO 2026-09-02 03:18:09 UTC
+-rw-rw-r-- 1 z z 11776 Sep  2 03:06 f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+--
+fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+--
+e53dd6a Etapa 7: log de publicacao da Fase 2 (outputs brutos de auditoria + push + conferencia remota)
+d12eb02 Fase 2 - consenso cross-CPU: spec pouw-quant-v1 (float64 + quantizacao fixed-point B=16), verificador de consenso, experimentos E1-E5 (caminhos aritmeticos, stress de ruido calibrado, dificuldade via alvo PSNR 40-65dB, prefixo), compromissos oficiais, 23 ancoras SHA-256, relatorio e logs brutos (protocolo anti-fabricacao)
+9e63e61 Etapa 5: log de auditoria de integridade e publicacao no GitHub (outputs brutos)
+--
+ M fase2/logs/raw/f2_publicacao.txt
+(vazio = clean)

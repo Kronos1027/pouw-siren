@@ -1,0 +1,23 @@
+== CONserto E2 — MODO 1 — INICIO 2026-09-02 03:36:04 UTC ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+
+== evidências do estado pré-conserto (commit e53dd6a vs disco) ==
+-- sha256 da versão commitada (e53dd6a) do TEORIA_ERRADA --
+fa0539c11c32fa5ed87f193b40706b17077c017b787c78682160b835c3f1bbcd  -
+-- primeira linha dessa versão commitada --
+INICIO 2026-09-02 03:06:34 UTC (re-execucao pos correcao da teoria; a 1a execucao crua com o bug esta preservada em fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt)
+-- sha256 da versão em disco (1a execucao crua restaurada) --
+9823606778a1978812d8097fef24d306bd574935942a8b84cea58fe16bea1e41  fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+-- sha256 do f2_e2_ruido.txt (re-execucao corrigida, a publicar) --
+fa0539c11c32fa5ed87f193b40706b17077c017b787c78682160b835c3f1bbcd  fase2/logs/raw/f2_e2_ruido.txt
+
+== status antes do commit ==
+ M fase2/logs/raw/f2_e2_ruido_EXECUCAO1_TEORIA_ERRADA.txt
+ M fase2/logs/raw/f2_publicacao.txt
+?? fase2/logs/etapa8_conserto_e2.md
+?? fase2/logs/raw/f2_conserto.txt
+?? fase2/logs/raw/f2_e2_ruido.txt
+
+== commit do conserto ==
