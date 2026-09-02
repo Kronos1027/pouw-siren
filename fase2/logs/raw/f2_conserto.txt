@@ -21,3 +21,30 @@ fa0539c11c32fa5ed87f193b40706b17077c017b787c78682160b835c3f1bbcd  fase2/logs/raw
 ?? fase2/logs/raw/f2_e2_ruido.txt
 
 == commit do conserto ==
+ 5 files changed, 345 insertions(+), 25 deletions(-)
+ create mode 100644 fase2/logs/etapa8_conserto_e2.md
+ create mode 100644 fase2/logs/raw/f2_conserto.txt
+ create mode 100644 fase2/logs/raw/f2_e2_ruido.txt
+COMMIT: a74b272472a683f6e7d31d2157880d929fd56a02
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   e53dd6a..a74b272  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+a74b272472a683f6e7d31d2157880d929fd56a02	HEAD
+a74b272472a683f6e7d31d2157880d929fd56a02	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T03:36:06Z
+branch   : main
+message  : None
+== CONserto E2 — MODO 1 — FIM 2026-09-02 03:36:08 UTC ==
+== CONserto E2 — MODO 2 — INICIO 2026-09-02 03:36:11 UTC ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+
+== status antes do commit final ==
+ M fase2/logs/raw/f2_conserto.txt
+
+== commit final: log bruto do conserto (auto-referência) ==
