@@ -1,0 +1,17 @@
+=== TAMANHOS MEDIDOS (stat) ===
+817 desafio.py
+9821 treinar.py
+7457 verificar.py
+1361 checagem_torchsave.py
+1782 checagem_retreino.py
+32896 desafio_b0f90ffe.npy
+32896 desafio_d037aef4.npy
+32896 desafio_8b457d0a.npy
+138379 receita_b0f90ffe.pt
+138379 receita_d037aef4.pt
+138379 receita_8b457d0a.pt
+138661 receita_extra_60db_b0f90ffe.pt
+16512 reconstrucao_b0f90ffe.npy
+16512 reconstrucao_d037aef4.npy
+16512 reconstrucao_8b457d0a.npy
+18160 relatorio_fase1.md

@@ -1,0 +1,17 @@
+2026-09-02 01:45:05 UTC
+hash do arquivo receita_b0f90ffe.pt : 6b64493713accd20f9ef130d51db6244e386fa58ade66bd2156755ca3f033b81
+hash do arquivo _retreino_check.pt : fb23e5dd3f36778fd651c39dd83b50d614b2ada12d169e00cefa4e4564a3fd58
+mesmas chaves de estado: True
+  0.bias: bit-a-bit identico=True | max|diff|=0.000e+00
+  0.weight: bit-a-bit identico=True | max|diff|=0.000e+00
+  2.bias: bit-a-bit identico=True | max|diff|=0.000e+00
+  2.weight: bit-a-bit identico=True | max|diff|=0.000e+00
+  4.bias: bit-a-bit identico=True | max|diff|=0.000e+00
+  4.weight: bit-a-bit identico=True | max|diff|=0.000e+00
+  6.bias: bit-a-bit identico=True | max|diff|=0.000e+00
+  6.weight: bit-a-bit identico=True | max|diff|=0.000e+00
+TODOS os tensores bit-a-bit identicos: True
+max diff global entre pesos: 0.000e+00
+meta a (epocas, psnr, parada): 100 49.62530573074805 alvo_psnr
+meta b (epocas, psnr, parada): 100 49.62530573074805 alvo_psnr
+2026-09-02 01:45:07 UTC

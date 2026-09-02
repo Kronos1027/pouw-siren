@@ -1,0 +1,2 @@
+Filesystem                               Size  Used Avail Use% Mounted on
+c-6a97734d-145d6674-55d578459bab-rootfs  9.9G   86M  9.3G   1% /

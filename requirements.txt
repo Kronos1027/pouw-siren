@@ -1,0 +1,5 @@
+# Fase 1 executada com: Python 3.12.14, NumPy 2.1.3, PyTorch 2.14.0+cpu (Linux x86_64)
+numpy>=2.0
+torch>=2.0
+# PyTorch SOMENTE CPU (sem CUDA):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu

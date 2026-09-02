@@ -1,0 +1,6 @@
+# Binários: jamais converter fim-de-linha (integridade dos hashes depende dos bytes exatos)
+*.npy binary
+*.pt binary
+# Scripts precisam de LF (shebang)
+*.sh text eol=lf
+*.py text eol=lf

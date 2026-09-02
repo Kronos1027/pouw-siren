@@ -1,0 +1,16 @@
+=== HASH ANTES DA RE-EXECUCAO (checagem de determinismo) ===
+f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8  desafio_b0f90ffe.npy
+
+=== RE-EXECUTANDO desafio.py teste-seed-001 ===
+Seed: teste-seed-001
+Hash da seed: b0f90ffe7b211056a12d016de15d344e29806c432d7533529fe2a45932161155
+Desafio salvo em: desafio_b0f90ffe.npy
+Shape: (64, 64), min=-3.2951, max=3.6230
+
+=== HASH DEPOIS ===
+f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8  desafio_b0f90ffe.npy
+
+=== SHA-256 DOS 3 ARTEFATOS DA ETAPA 1 ===
+f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8  desafio_b0f90ffe.npy
+b62112ff4df7db352dda5b052886d7f3f9d10d91dd7c93f8ec0022019d19eb41  desafio_d037aef4.npy
+4f4d6d5723049abc2b554f46464141e05805f51354df210e2f6824bb741f4bdc  desafio_8b457d0a.npy

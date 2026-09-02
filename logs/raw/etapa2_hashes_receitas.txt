@@ -1,0 +1,13 @@
+=== SHA-256 DAS RECEITAS (3 oficiais + 1 extra 60dB) ===
+6b64493713accd20f9ef130d51db6244e386fa58ade66bd2156755ca3f033b81  receita_b0f90ffe.pt
+29682d84d8844841ef54fd86c6de19284fb019aa92e8d219c6509d09e4c4c44e  receita_d037aef4.pt
+98c123fd0219d3b58c6661263550d6d270c3e0958c6a2d4206634fb119a7ebea  receita_8b457d0a.pt
+e474d0377947a4e78821af6d250ed58b0e951061875bfbd02840626e1c9558d9  receita_extra_60db_b0f90ffe.pt
+
+=== TAMANHOS DOS ARTEFATOS (bytes) ===
+32896 desafio_b0f90ffe.npy
+32896 desafio_d037aef4.npy
+32896 desafio_8b457d0a.npy
+138379 receita_b0f90ffe.pt
+138379 receita_d037aef4.pt
+138379 receita_8b457d0a.pt

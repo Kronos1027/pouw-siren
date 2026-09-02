@@ -1,0 +1,6 @@
+2026-09-02 01:44:32 UTC
+hash SHA-256 de _check1.pt: 1d61e031d843e5643c609946568da5022b2d6e5405d8b0bc85bbe2b7402be8a4
+hash SHA-256 de _check2.pt: 3b711c30b2e3360b927ea0463916c13564136f425defa7d3f3cc808d6deb9f57
+bytes dos arquivos identicos: False
+conteudo (tensores) identico apos reload: True
+2026-09-02 01:44:35 UTC

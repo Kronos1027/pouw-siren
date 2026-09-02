@@ -1,0 +1,14 @@
+2026-09-02 01:39:38 UTC
+Traceback (most recent call last):
+  File "/home/z/my-project/download/pouw_fase1/desafio.py", line 15, in <module>
+    campo, hash_seed = gerar_desafio(seed)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/home/z/my-project/download/pouw_fase1/desafio.py", line 10, in gerar_desafio
+    return campo, h.hexdigest()
+                  ^^^^^^^^^^^
+AttributeError: 'bytes' object has no attribute 'hexdigest'
+
+real	0m0.230s
+user	0m0.275s
+sys	0m0.019s
+2026-09-02 01:39:38 UTC

@@ -1,0 +1,19 @@
+2026-09-02 01:39:24 UTC
+Traceback (most recent call last):
+  File "/home/z/my-project/download/pouw_fase1/desafio.py", line 15, in <module>
+    campo, hash_seed = gerar_desafio(seed)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/home/z/my-project/download/pouw_fase1/desafio.py", line 9, in gerar_desafio
+    campo = sum(np.sin(f * x * np.PI) * np.cos(f * y * np.PI) for f in freqs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/z/my-project/download/pouw_fase1/desafio.py", line 9, in <genexpr>
+    campo = sum(np.sin(f * x * np.PI) * np.cos(f * y * np.PI) for f in freqs)
+                               ^^^^^
+  File "/home/z/.venv/lib/python3.12/site-packages/numpy/__init__.py", line 414, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'PI'. Did you mean: 'pi'?
+
+real	0m0.247s
+user	0m0.278s
+sys	0m0.021s
+2026-09-02 01:39:25 UTC

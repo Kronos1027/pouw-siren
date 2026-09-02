@@ -1,0 +1,15 @@
+desafio.py: OK
+treinar.py: OK
+verificar.py: OK
+checagem_torchsave.py: OK
+checagem_retreino.py: OK
+desafio_b0f90ffe.npy: OK
+desafio_d037aef4.npy: OK
+desafio_8b457d0a.npy: OK
+receita_b0f90ffe.pt: OK
+receita_d037aef4.pt: OK
+receita_8b457d0a.pt: OK
+receita_extra_60db_b0f90ffe.pt: OK
+reconstrucao_b0f90ffe.npy: OK
+reconstrucao_d037aef4.npy: OK
+reconstrucao_8b457d0a.npy: OK
