@@ -1,0 +1,59 @@
+INICIO 2026-09-02 03:10:17 UTC
+== experimento_prefixo.py — PoUW Fase 2, E5 (dificuldade exponencial por prefixo) ==
+Python 3.12.14
+Pré-imagem do nonce: SHA-256('pouw-bloco-demo-v1|<compromisso_hex>|<nonce>')
+k medidos: [8, 12, 16, 20] (3 ensaios cada) + k=24 (1 ensaio) | RNG dos nonces iniciais: default_rng(20260902)
+k extrapolados (NÃO medidos): [28, 32, 36, 40]
+
+Compromisso quantizado da seed 001 (recomputado aqui, B=16): 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+
+Calibração de taxa: 100000 hashes em 0.0445 s → 2.249 M hashes/s (1 thread, Python puro)
+
+  k= 8 | ensaio 1/3 | tentativas=         3 | tempo=   0.000 s | nonce=8512836020888356526 | digest=005b36993098ecb1…
+  k= 8 | ensaio 2/3 | tentativas=        54 | tempo=   0.000 s | nonce=5769944070187592144 | digest=00b1ccda5fc380dd…
+  k= 8 | ensaio 3/3 | tentativas=       252 | tempo=   0.000 s | nonce=1678674862399388224 | digest=00f0eb0782234fbc…
+
+  k=12 | ensaio 1/3 | tentativas=    11,659 | tempo=   0.008 s | nonce=8779485687556283511 | digest=0006ce0a8f8dae28…
+  k=12 | ensaio 2/3 | tentativas=     3,175 | tempo=   0.002 s | nonce=7555902614855666490 | digest=0009d4893da1dc9f…
+  k=12 | ensaio 3/3 | tentativas=     2,383 | tempo=   0.002 s | nonce=4799630824890561812 | digest=000f3cdb6bf02cba…
+
+  k=16 | ensaio 1/3 | tentativas=    11,861 | tempo=   0.008 s | nonce=5411960441638977964 | digest=0000b6d5feae14c3…
+  k=16 | ensaio 2/3 | tentativas=    19,203 | tempo=   0.013 s | nonce=8264691305244286946 | digest=000097cda273e90c…
+  k=16 | ensaio 3/3 | tentativas=    48,456 | tempo=   0.032 s | nonce=1955310151045673025 | digest=000007c5819712f9…
+
+  k=20 | ensaio 1/3 | tentativas=   729,104 | tempo=   0.468 s | nonce=6488575298678586375 | digest=0000007fb33f2ebc…
+  k=20 | ensaio 2/3 | tentativas=   234,536 | tempo=   0.152 s | nonce=6077440327687978772 | digest=000009cd02385d23…
+  k=20 | ensaio 3/3 | tentativas=   841,180 | tempo=   0.530 s | nonce=2066615881596029379 | digest=00000f25e79e4a25…
+
+  k=24 | ensaio 1/1 | tentativas= 8,616,058 | tempo=   5.496 s | nonce=6970888817363577118 | digest=000000429d3524cf…
+
+======== TABELA-RESUMO E5 (medido; 2^k é a esperança teórica) ========
+  k |  2^k (esperado) | tentativas mediana |         mín–máx | tempo mediano (s) | digest mediano (16 hex)
+--------------------------------------------------------------------------------------------------------------
+  8 |             256 |                 54 |       3–252     |             0.000 | 00b1ccda5fc380dd…
+ 12 |           4,096 |              3,175 |   2,383–11,659  |             0.002 | 0009d4893da1dc9f…
+ 16 |          65,536 |             19,203 |  11,861–48,456  |             0.013 | 000097cda273e90c…
+ 20 |       1,048,576 |            729,104 | 234,536–841,180 |             0.468 | 0000007fb33f2ebc…
+ 24 |      16,777,216 |          8,616,058 | 8,616,058–8,616,058 |             5.496 | 000000429d3524cf…
+
+======== EXTRAPOLAÇÃO (derivada aritmeticamente da taxa medida; NÃO executada) ========
+  k |           2^k | tempo esperado à taxa medida (2.249 M hashes/s)
+------------------------------------------------------------
+ 28 |   268,435,456 | 119 s
+ 32 | 4,294,967,296 | 1,909 s
+ 36 | 68,719,476,736 | 8.5 h
+ 40 | 1,099,511,627,776 | 5.7 dias
+
+FRAMING (dado + advertência de design):
+  - Moer nonce é queima de hash PURA (a crítica clássica ao PoW): cada hash é descartável.
+  - O compromisso em si não é 'moível' sem RETREINAR (o custo dominante permanece útil);
+    o prefixo serve como ajuste fino exponencial por cima — análogo ao difficulty adjustment.
+  - Taxa medida: 1 thread, Python puro (2.249 M hashes/s); uma implementação em C
+    ou GPU moeria ordens de grandeza mais rápido — o k deve ser calibrado contra isso.
+
+Tempo total do experimento: 7.885 s (incl. import do torch e recomputação do compromisso)
+
+real	0m8.401s
+user	0m8.361s
+sys	0m0.121s
+FIM 2026-09-02 03:10:25 UTC

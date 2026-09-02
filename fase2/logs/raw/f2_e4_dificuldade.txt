@@ -1,0 +1,414 @@
+INICIO 2026-09-02 03:08:00 UTC
+== experimento_dificuldade.py — PoUW Fase 2, E4 (dificuldade via alvo de PSNR) ==
+Python 3.12.14 | executor: /home/z/.venv/bin/python3
+RAIZ: /home/z/my-project/download/pouw_fase1 | desafio: desafio_b0f90ffe.npy | alvos: [40, 45, 50, 55, 60, 65] dB | max-epocas: 5000
+Treino: treinar.py da Fase 1 intocado (2 threads default) | Verificação: verificar_fase2.py (float64, 1 thread, B=16)
+Convenção de tempos idêntica à Fase 1: perf_counter interno, SEM tempo de import.
+
+########## ALVO 40 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 40 --saida fase2/receita_alvo40db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 40.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.108 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    3.92 s
+
+Parada: PSNR 49.63 dB >= 40.0 dB na epoca 100
+PSNR final (avaliacao pos-treino, float64): 49.6253 dB
+Total de epocas executadas: 100
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 3.926989 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.003920 s
+Tempo total do script (perf_counter, incl. imports): 5.040693 s
+Receita salva em: fase2/receita_alvo40db_b0f90ffe.pt
+SHA-256 da receita: 12505e74059ed4d65cc031247795dbd115b0b87e4c7a7ff8d18e9953f8424d9d
+[treino alvo 40] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo40db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 40 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo40db_b0f90ffe.pt
+SHA-256 da receita (recalculado): 12505e74059ed4d65cc031247795dbd115b0b87e4c7a7ff8d18e9953f8424d9d
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.097 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.019769 s
+B) Checagem de âncora do desafio: 0.000126 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000439 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000211 s
+E) PSNR float64: 0.000208 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.020762 s
+Tempo total do processo (incl. import do PyTorch): 1.119207 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo40db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b
+
+PSNR (reconstrução float64 vs desafio): 49.6253 dB
+RMSE: 2.284110e-02 | erro máximo absoluto: 1.002137e-01 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+[meta da receita] épocas: 100 | PSNR de treino: 49.62530573074805 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 49.6253 dB >= alvo 40.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 40] código de saída: 0
+[resumo alvo 40] parada: PSNR 49.63 dB >= 40.0 dB na epoca 100 | épocas 100 | PSNR treino 49.6253 | PSNR verif 49.6253 | treino 3.926989 s | verif 0.020762 s | razão 189.1x | válido p/ consenso: True
+
+########## ALVO 45 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 45 --saida fase2/receita_alvo45db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 45.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.078 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    3.96 s
+
+Parada: PSNR 49.63 dB >= 45.0 dB na epoca 100
+PSNR final (avaliacao pos-treino, float64): 49.6253 dB
+Total de epocas executadas: 100
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 3.969287 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.003793 s
+Tempo total do script (perf_counter, incl. imports): 5.053266 s
+Receita salva em: fase2/receita_alvo45db_b0f90ffe.pt
+SHA-256 da receita: 4353d7901c2403f2c18869468db11d72cdb721e17edef7fa3d1af1fd6a5a4e15
+[treino alvo 45] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo45db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 45 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo45db_b0f90ffe.pt
+SHA-256 da receita (recalculado): 4353d7901c2403f2c18869468db11d72cdb721e17edef7fa3d1af1fd6a5a4e15
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.083 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.019717 s
+B) Checagem de âncora do desafio: 0.000128 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000433 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000212 s
+E) PSNR float64: 0.000204 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.020699 s
+Tempo total do processo (incl. import do PyTorch): 1.105982 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo45db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b
+
+PSNR (reconstrução float64 vs desafio): 49.6253 dB
+RMSE: 2.284110e-02 | erro máximo absoluto: 1.002137e-01 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+[meta da receita] épocas: 100 | PSNR de treino: 49.62530573074805 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 49.6253 dB >= alvo 45.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 45] código de saída: 0
+[resumo alvo 45] parada: PSNR 49.63 dB >= 45.0 dB na epoca 100 | épocas 100 | PSNR treino 49.6253 | PSNR verif 49.6253 | treino 3.969287 s | verif 0.020699 s | razão 191.8x | válido p/ consenso: True
+
+########## ALVO 50 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 50 --saida fase2/receita_alvo50db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 50.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.085 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    3.91 s
+[epoca   200] PSNR=  54.57 dB | perda=1.685940e-04 | t=    5.74 s
+
+Parada: PSNR 54.57 dB >= 50.0 dB na epoca 200
+PSNR final (avaliacao pos-treino, float64): 54.5661 dB
+Total de epocas executadas: 200
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 5.742811 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.002277 s
+Tempo total do script (perf_counter, incl. imports): 6.832462 s
+Receita salva em: fase2/receita_alvo50db_b0f90ffe.pt
+SHA-256 da receita: 798fa08f9f770f0f13db00b72b7c90ffc91306e5ca51eb106499ea40b583f0ca
+[treino alvo 50] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo50db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 50 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo50db_b0f90ffe.pt
+SHA-256 da receita (recalculado): 798fa08f9f770f0f13db00b72b7c90ffc91306e5ca51eb106499ea40b583f0ca
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.108 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.020227 s
+B) Checagem de âncora do desafio: 0.000116 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000442 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000242 s
+E) PSNR float64: 0.000240 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.021292 s
+Tempo total do processo (incl. import do PyTorch): 1.131344 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo50db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): 1d7b1894ce5ded41ed994d0fe382e8c5ae6da04e851cdbf6337865bfa635e9d6
+
+PSNR (reconstrução float64 vs desafio): 54.5661 dB
+RMSE: 1.293232e-02 | erro máximo absoluto: 5.523235e-02 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): d2614c0874921687ab18c60c676f35632b1bf300788e4d47e317f489b1f6a80d
+[meta da receita] épocas: 200 | PSNR de treino: 54.56611650779318 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 54.5661 dB >= alvo 50.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 50] código de saída: 0
+[resumo alvo 50] parada: PSNR 54.57 dB >= 50.0 dB na epoca 200 | épocas 200 | PSNR treino 54.5661 | PSNR verif 54.5661 | treino 5.742811 s | verif 0.021292 s | razão 269.7x | válido p/ consenso: True
+
+########## ALVO 55 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 55 --saida fase2/receita_alvo55db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 55.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.105 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    3.86 s
+[epoca   200] PSNR=  54.57 dB | perda=1.685940e-04 | t=    5.52 s
+[epoca   300] PSNR=  57.37 dB | perda=8.815475e-05 | t=    7.19 s
+
+Parada: PSNR 57.37 dB >= 55.0 dB na epoca 300
+PSNR final (avaliacao pos-treino, float64): 57.3701 dB
+Total de epocas executadas: 300
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 7.190010 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.002270 s
+Tempo total do script (perf_counter, incl. imports): 8.299542 s
+Receita salva em: fase2/receita_alvo55db_b0f90ffe.pt
+SHA-256 da receita: e6335fdcec48d1b7828208618c367127511d1802f2891d2f739c555b465a3e6b
+[treino alvo 55] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo55db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 55 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo55db_b0f90ffe.pt
+SHA-256 da receita (recalculado): e6335fdcec48d1b7828208618c367127511d1802f2891d2f739c555b465a3e6b
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.105 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.020086 s
+B) Checagem de âncora do desafio: 0.000119 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000448 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000236 s
+E) PSNR float64: 0.000222 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.021115 s
+Tempo total do processo (incl. import do PyTorch): 1.128448 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo55db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): bf4b12c7311ce7e57f01a8e0bda294fd10ab71d1ae51581e86264ee83c5aa6b5
+
+PSNR (reconstrução float64 vs desafio): 57.3701 dB
+RMSE: 9.364331e-03 | erro máximo absoluto: 4.438255e-02 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 9b4584f3423721dd1df68b800747eb42bc2d70b8aae264ea84d5ac5902bffcfc
+[meta da receita] épocas: 300 | PSNR de treino: 57.37010077254611 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 57.3701 dB >= alvo 55.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 55] código de saída: 0
+[resumo alvo 55] parada: PSNR 57.37 dB >= 55.0 dB na epoca 300 | épocas 300 | PSNR treino 57.3701 | PSNR verif 57.3701 | treino 7.190010 s | verif 0.021115 s | razão 340.5x | válido p/ consenso: True
+
+########## ALVO 60 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 60 --saida fase2/receita_alvo60db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 60.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.108 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    4.07 s
+[epoca   200] PSNR=  54.57 dB | perda=1.685940e-04 | t=    5.95 s
+[epoca   300] PSNR=  57.37 dB | perda=8.815475e-05 | t=    7.86 s
+[epoca   400] PSNR=  59.34 dB | perda=5.591847e-05 | t=    9.75 s
+[epoca   500] PSNR=  60.87 dB | perda=3.929142e-05 | t=   11.59 s
+
+Parada: PSNR 60.87 dB >= 60.0 dB na epoca 500
+PSNR final (avaliacao pos-treino, float64): 60.8704 dB
+Total de epocas executadas: 500
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 11.598678 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.002218 s
+Tempo total do script (perf_counter, incl. imports): 12.710811 s
+Receita salva em: fase2/receita_alvo60db_b0f90ffe.pt
+SHA-256 da receita: a6e030b9578f7c70d607f30317e4b18d192fcb7df5bd05f6de4b73a011b060bd
+[treino alvo 60] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo60db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 60 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo60db_b0f90ffe.pt
+SHA-256 da receita (recalculado): a6e030b9578f7c70d607f30317e4b18d192fcb7df5bd05f6de4b73a011b060bd
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.134 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.021422 s
+B) Checagem de âncora do desafio: 0.000138 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000468 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000235 s
+E) PSNR float64: 0.000226 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.022495 s
+Tempo total do processo (incl. import do PyTorch): 1.158971 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo60db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): cbeacc703c753dd5a429788068da8cceb6d8b2f6684d7628d1c306e13ce31dce
+
+PSNR (reconstrução float64 vs desafio): 60.8704 dB
+RMSE: 6.258367e-03 | erro máximo absoluto: 2.783145e-02 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 92b6fe06dde1cd1c07120eb6f8c96e3179d230a2e3ee0c01840106c1e54af0da
+[meta da receita] épocas: 500 | PSNR de treino: 60.870427487954906 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 60.8704 dB >= alvo 60.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 60] código de saída: 0
+[resumo alvo 60] parada: PSNR 60.87 dB >= 60.0 dB na epoca 500 | épocas 500 | PSNR treino 60.8704 | PSNR verif 60.8704 | treino 11.598678 s | verif 0.022495 s | razão 515.6x | válido p/ consenso: True
+
+########## ALVO 65 dB ##########
+
+-------- $ /home/z/.venv/bin/python3 treinar.py desafio_b0f90ffe.npy --max-epocas 5000 --alvo-psnr 65 --saida fase2/receita_alvo65db_b0f90ffe.pt --------
+== treinar.py — PoUW Fase 1 (SIREN em CPU) ==
+Desafio: desafio_b0f90ffe.npy
+SHA-256 do arquivo de desafio: f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+Grade: 64x64 (4096 pontos) | pico (max-min) do campo: 6.918026
+Seed de inicializacao da rede (derivada do SHA-256 do desafio): 4057987820
+Arquitetura: 2 -> [128, 128, 128] -> 1, ativacao sin(30*x) (SIREN)
+Criterio de parada: PSNR >= 65.0 dB (avaliado a cada 100 epocas) OU 5000 epocas
+Otimizador: Adam, lr=0.0001 | batch completo (4096 amostras/epoca)
+Threads de CPU (torch, default): 2
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.134 s
+Total de parametros do modelo: 33537
+[epoca   100] PSNR=  49.63 dB | perda=5.314047e-04 | t=    4.30 s
+[epoca   200] PSNR=  54.57 dB | perda=1.685940e-04 | t=    6.47 s
+[epoca   300] PSNR=  57.37 dB | perda=8.815475e-05 | t=    8.48 s
+[epoca   400] PSNR=  59.34 dB | perda=5.591847e-05 | t=   10.41 s
+[epoca   500] PSNR=  60.87 dB | perda=3.929142e-05 | t=   12.35 s
+[epoca   600] PSNR=  62.13 dB | perda=2.939301e-05 | t=   14.29 s
+[epoca   700] PSNR=  63.21 dB | perda=2.292720e-05 | t=   16.17 s
+[epoca   800] PSNR=  64.15 dB | perda=1.843044e-05 | t=   18.11 s
+[epoca   900] PSNR=  65.00 dB | perda=1.516111e-05 | t=   20.01 s
+
+Parada: PSNR 65.00 dB >= 65.0 dB na epoca 900
+PSNR final (avaliacao pos-treino, float64): 65.0004 dB
+Total de epocas executadas: 900
+Tempo de treino (perf_counter; da construcao do modelo a avaliacao final): 20.013393 s
+Tempo de salvamento da receita (torch.save + SHA-256): 0.002215 s
+Tempo total do script (perf_counter, incl. imports): 21.151487 s
+Receita salva em: fase2/receita_alvo65db_b0f90ffe.pt
+SHA-256 da receita: e6b3ad051c9f59870aa64e68371ce84b5103fd14836e914331aa9ff2efa2b199
+[treino alvo 65] código de saída: 0
+
+-------- $ /home/z/.venv/bin/python3 fase2/verificar_fase2.py fase2/receita_alvo65db_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 65 --------
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: fase2/receita_alvo65db_b0f90ffe.pt
+SHA-256 da receita (recalculado): e6b3ad051c9f59870aa64e68371ce84b5103fd14836e914331aa9ff2efa2b199
+Desafio: desafio_b0f90ffe.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.106 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.021206 s
+B) Checagem de âncora do desafio: 0.000114 s → OK (meta=f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8)
+C) Quantização canônica B=16 + hash de compromisso: 0.000422 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000246 s
+E) PSNR float64: 0.000227 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.022219 s
+Tempo total do processo (incl. import do PyTorch): 1.129941 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/fase2/quantizada_alvo65db_b0f90ffe_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): df14ca03a16d68d40377f162b9cdb4933bbf8e7292b6e3b021f69eecf2271fdf
+
+PSNR (reconstrução float64 vs desafio): 65.0004 dB
+RMSE: 3.890114e-03 | erro máximo absoluto: 1.795473e-02 | pico (max-min): 6.918026
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 18d77b205ad947f72415aae1866d3fe51dae4ed58908a3399306448a2ff7e816
+[meta da receita] épocas: 900 | PSNR de treino: 65.00039273220443 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 65.0004 dB >= alvo 65.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+[verificação alvo 65] código de saída: 0
+[resumo alvo 65] parada: PSNR 65.00 dB >= 65.0 dB na epoca 900 | épocas 900 | PSNR treino 65.0004 | PSNR verif 65.0004 | treino 20.013393 s | verif 0.022219 s | razão 900.7x | válido p/ consenso: True
+
+======== TABELA-RESUMO E4 (tudo medido AQUI, 2026-09-02; saída crua acima) ========
+alvo | parada                       | épocas | PSNR treino | PSNR verif | treino (s) | verif (s) |   razão | compromisso B=16
+------------------------------------------------------------------------------------------------------------------------------------------------------
+  40 | PSNR 49.63 dB >= 40.0 dB na epoca 100 |    100 |     49.6253 |    49.6253 |   3.926989 |  0.020762 |  189.1x | 93ad1d430c47b1a6…
+  45 | PSNR 49.63 dB >= 45.0 dB na epoca 100 |    100 |     49.6253 |    49.6253 |   3.969287 |  0.020699 |  191.8x | 93ad1d430c47b1a6…
+  50 | PSNR 54.57 dB >= 50.0 dB na epoca 200 |    200 |     54.5661 |    54.5661 |   5.742811 |  0.021292 |  269.7x | d2614c0874921687…
+  55 | PSNR 57.37 dB >= 55.0 dB na epoca 300 |    300 |     57.3701 |    57.3701 |   7.190010 |  0.021115 |  340.5x | 9b4584f3423721dd…
+  60 | PSNR 60.87 dB >= 60.0 dB na epoca 500 |    500 |     60.8704 |    60.8704 |  11.598678 |  0.022495 |  515.6x | 92b6fe06dde1cd1c…
+  65 | PSNR 65.00 dB >= 65.0 dB na epoca 900 |    900 |     65.0004 |    65.0004 |  20.013393 |  0.022219 |  900.7x | 18d77b205ad947f7…
+
+Cruzamento com números HISTÓRICOS da Fase 1 (NÃO medidos aqui; ver logs/etapa2.md da F1):
+  F1 alvo 40 dB: 100 épocas, treino 4,087526 s, PSNR 49,6253 (receita_b0f90ffe.pt)
+  F1 alvo 60 dB: 500 épocas, treino 9,739328 s, PSNR 60,8704 (receita_extra_60db_b0f90ffe.pt)
+
+Tempo total do experimento (parede, incl. subprocessos e imports): 73.634 s
+
+real	1m13.666s
+user	1m12.314s
+sys	0m21.947s
+FIM 2026-09-02 03:09:13 UTC

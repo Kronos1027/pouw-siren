@@ -1,0 +1,64 @@
+INVENTARIO 2026-09-02 03:11:07 UTC
+== hash dos artefatos novos (fase2/ + quantizadas na raiz) ==
+dd3b4a9ba5debe1a55f06e95c50e81acea4f5e322bf4a07a056f109a46e695ac  fase2/experimento_caminhos.py
+8114bae96d7d794fe6e7cdf1571a5e5700258624fb8e766879de1502744b7b00  fase2/experimento_dificuldade.py
+36ef9784d3d7b9a8142a1ddd0793b6c71d8ae115da793a6a42bbe99f8c2f1390  fase2/experimento_prefixo.py
+6f5a88fd85b26d7acca9d02356217fb3a0e92d7ba1b671b31bb9131c94b80eda  fase2/experimento_ruido.py
+bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b  fase2/quantizada_alvo40db_b0f90ffe_u16.npy
+bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b  fase2/quantizada_alvo45db_b0f90ffe_u16.npy
+1d7b1894ce5ded41ed994d0fe382e8c5ae6da04e851cdbf6337865bfa635e9d6  fase2/quantizada_alvo50db_b0f90ffe_u16.npy
+bf4b12c7311ce7e57f01a8e0bda294fd10ab71d1ae51581e86264ee83c5aa6b5  fase2/quantizada_alvo55db_b0f90ffe_u16.npy
+cbeacc703c753dd5a429788068da8cceb6d8b2f6684d7628d1c306e13ce31dce  fase2/quantizada_alvo60db_b0f90ffe_u16.npy
+df14ca03a16d68d40377f162b9cdb4933bbf8e7292b6e3b021f69eecf2271fdf  fase2/quantizada_alvo65db_b0f90ffe_u16.npy
+c9f1a9e8c93af84ae8657a6e9615d32933b1d276c8aed3473c6e94d0e83fb294  fase2/quantizar.py
+12505e74059ed4d65cc031247795dbd115b0b87e4c7a7ff8d18e9953f8424d9d  fase2/receita_alvo40db_b0f90ffe.pt
+4353d7901c2403f2c18869468db11d72cdb721e17edef7fa3d1af1fd6a5a4e15  fase2/receita_alvo45db_b0f90ffe.pt
+798fa08f9f770f0f13db00b72b7c90ffc91306e5ca51eb106499ea40b583f0ca  fase2/receita_alvo50db_b0f90ffe.pt
+e6335fdcec48d1b7828208618c367127511d1802f2891d2f739c555b465a3e6b  fase2/receita_alvo55db_b0f90ffe.pt
+a6e030b9578f7c70d607f30317e4b18d192fcb7df5bd05f6de4b73a011b060bd  fase2/receita_alvo60db_b0f90ffe.pt
+e6b3ad051c9f59870aa64e68371ce84b5103fd14836e914331aa9ff2efa2b199  fase2/receita_alvo65db_b0f90ffe.pt
+7a4082653ec0958f5826452d09c4c5430006cc14acf434b76ba630bfebd28bae  fase2/siren_numpy.py
+e53dc6c7f6cb50bddb061a25f13608278cc58d7a4980c14fb3a757771613b21e  fase2/verificar_fase2.py
+a9b51bedc91f66d38f0187c5b7355f35bdd40b4f0ded20bf752c7537008da101  quantizada_8b457d0a_u16.npy
+bf583953b977c0619cb290def6f59dfc8f8d7cab38fd20c9af16e1b2af9b3e5b  quantizada_b0f90ffe_u16.npy
+85f094d1feda9a171b10ca1e75ae5303fc1504c8685d600034c478fb870b2b43  quantizada_d037aef4_u16.npy
+cbeacc703c753dd5a429788068da8cceb6d8b2f6684d7628d1c306e13ce31dce  quantizada_extra_60db_b0f90ffe_u16.npy
+
+== tamanhos ==
+9006 fase2/experimento_caminhos.py
+6246 fase2/experimento_dificuldade.py
+6978 fase2/experimento_prefixo.py
+8502 fase2/experimento_ruido.py
+8320 fase2/quantizada_alvo40db_b0f90ffe_u16.npy
+8320 fase2/quantizada_alvo45db_b0f90ffe_u16.npy
+8320 fase2/quantizada_alvo50db_b0f90ffe_u16.npy
+8320 fase2/quantizada_alvo55db_b0f90ffe_u16.npy
+8320 fase2/quantizada_alvo60db_b0f90ffe_u16.npy
+8320 fase2/quantizada_alvo65db_b0f90ffe_u16.npy
+6142 fase2/quantizar.py
+138569 fase2/receita_alvo40db_b0f90ffe.pt
+138569 fase2/receita_alvo45db_b0f90ffe.pt
+138569 fase2/receita_alvo50db_b0f90ffe.pt
+138569 fase2/receita_alvo55db_b0f90ffe.pt
+138569 fase2/receita_alvo60db_b0f90ffe.pt
+138569 fase2/receita_alvo65db_b0f90ffe.pt
+3883 fase2/siren_numpy.py
+10602 fase2/verificar_fase2.py
+8320 quantizada_8b457d0a_u16.npy
+8320 quantizada_b0f90ffe_u16.npy
+8320 quantizada_d037aef4_u16.npy
+8320 quantizada_extra_60db_b0f90ffe_u16.npy
+
+== cross-check: quantizada extra60 (F1) vs alvo60 (E4) ==
+cbeacc703c753dd5a429788068da8cceb6d8b2f6684d7628d1c306e13ce31dce  quantizada_extra_60db_b0f90ffe_u16.npy
+cbeacc703c753dd5a429788068da8cceb6d8b2f6684d7628d1c306e13ce31dce  fase2/quantizada_alvo60db_b0f90ffe_u16.npy
+FILES BYTE-A-BYTE IDENTICOS
+
+== cross-check: quantizada alvo40 (E4) vs quantizada seed001 oficial ==
+FILES BYTE-A-BYTE IDENTICOS
+
+== gitignore ==
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

@@ -1,0 +1,38 @@
+INICIO 2026-09-02 03:10:45 UTC
+== verificar_fase2.py — PoUW Fase 2 (verificador de consenso, hash quantizado) ==
+Receita: receita_8b457d0a.pt
+SHA-256 da receita (recalculado): 98c123fd0219d3b58c6661263550d6d270c3e0958c6a2d4206634fb119a7ebea
+Desafio: desafio_8b457d0a.npy
+Threads de CPU (fixado em 1): 1 | forward em FLOAT64
+Python 3.12.14 | PyTorch 2.14.0+cpu | NumPy 2.1.3
+Import do PyTorch levou: 1.111 s
+
+Arquitetura: 2 -> [128, 128, 128] -> 1, omega_0=30.0 | 33537 parâmetros
+
+-- Fases medidas (perf_counter) --
+A) Carga da receita + forward float64 (4096 pontos): 0.018991 s
+B) Checagem de âncora do desafio: 0.000118 s → OK (meta=4f4d6d5723049abc2b554f46464141e05805f51354df210e2f6824bb741f4bdc)
+C) Quantização canônica B=16 + hash de compromisso: 0.000368 s
+D) Salvamento do .npy quantizado + SHA-256: 0.000204 s
+E) PSNR float64: 0.000213 s
+
+TEMPO TOTAL DE VERIFICAÇÃO (carga -> hash -> PSNR, sem imports): 0.019897 s
+Tempo total do processo (incl. import do PyTorch): 1.133010 s
+
+Array quantizado salvo em: /home/z/my-project/download/pouw_fase1/quantizada_8b457d0a_u16.npy (dtype uint16, 4096 níveis)
+SHA-256 do ARQUIVO quantizado (âncora conferível com sha256sum): a9b51bedc91f66d38f0187c5b7355f35bdd40b4f0ded20bf752c7537008da101
+
+PSNR (reconstrução float64 vs desafio): 49.2587 dB
+RMSE: 2.156159e-02 | erro máximo absoluto: 1.040961e-01 | pico (max-min): 6.260589
+
+COMPROMISSO QUANTIZADO (pouw-quant-v1|B=16|64x64|): 8397befca9f69cfcc9da2fc0e7719c8fa6b7c1cc5612a8236c6cc1e8fc544f4a
+[meta da receita] épocas: 100 | PSNR de treino: 49.2586868752562 | parada: alvo_psnr
+
+REGRA DE CONSENSO: âncora do desafio OK | PSNR 49.2587 dB >= alvo 40.0 dB
+RESULTADO: VÁLIDO (código 0) — o hash de compromisso acima deve constar no bloco e ser recomputado identicamente por todos os nós
+
+real	0m1.672s
+user	0m1.630s
+sys	0m0.108s
+CODIGO DE SAIDA: 0
+FIM 2026-09-02 03:10:47 UTC

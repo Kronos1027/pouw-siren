@@ -1,22 +1,29 @@
 #!/bin/sh
-# PoUW-SIREN Fase 1 — checagem de integridade dos artefatos publicados.
-# Recalcula o SHA-256 de todos os artefatos da pesquisa e compara com os valores
-# registrados no relatorio_fase1.md (seção 6), no formato sha256sum -c.
+# PoUW-SIREN — checagem de integridade dos artefatos publicados (Fases 1 e 2).
+# Recalcula o SHA-256 de todos os artefatos da pesquisa e compara com os
+# valores registrados em hashes.sha256 (Fase 1, 15 âncoras) e
+# fase2/hashes_fase2.sha256 (Fase 2, 23 âncoras), no formato sha256sum -c.
 #
 # Uso (Linux/macOS):   bash checar_integridade.sh
-# Equivalente Linux:   sha256sum -c hashes.sha256
-# Equivalente macOS:   shasum -a 256 -c hashes.sha256
+# Equivalente Linux:   sha256sum -c hashes.sha256 && sha256sum -c fase2/hashes_fase2.sha256
+# Equivalente macOS:   shasum -a 256 -c hashes.sha256 && shasum -a 256 -c fase2/hashes_fase2.sha256
 # Windows:             certutil -hashfile receita_b0f90ffe.pt SHA256
-#                      (comparar manualmente com hashes.sha256)
+#                      (comparar manualmente com hashes.sha256 e fase2/hashes_fase2.sha256)
 
 cd "$(dirname "$0")" || exit 1
 
 if command -v sha256sum >/dev/null 2>&1; then
-    sha256sum -c hashes.sha256
+    CMD="sha256sum -c"
 elif command -v shasum >/dev/null 2>&1; then
-    shasum -a 256 -c hashes.sha256
+    CMD="shasum -a 256 -c"
 else
     echo "ERRO: nem 'sha256sum' nem 'shasum' foram encontrados neste sistema."
-    echo "Use 'certutil -hashfile <arquivo> SHA256' (Windows) e compare com hashes.sha256."
+    echo "Use 'certutil -hashfile <arquivo> SHA256' (Windows) e compare com os arquivos de hashes."
     exit 1
 fi
+
+echo "== Fase 1 (hashes.sha256) =="
+$CMD hashes.sha256 || exit 1
+echo
+echo "== Fase 2 (fase2/hashes_fase2.sha256) =="
+$CMD fase2/hashes_fase2.sha256 || exit 1

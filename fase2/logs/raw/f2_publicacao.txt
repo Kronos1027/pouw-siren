@@ -1,0 +1,16 @@
+== PUBLICACAO FASE 2 — MODO 1 — INICIO 2026-09-02 03:16:43 UTC ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+
+== status antes do commit ==
+ M README.md
+ M checar_integridade.sh
+?? fase2/
+?? quantizada_8b457d0a_u16.npy
+?? quantizada_b0f90ffe_u16.npy
+?? quantizada_d037aef4_u16.npy
+?? quantizada_extra_60db_b0f90ffe_u16.npy
+arquivos alterados/novos: 7
+
+== commit 1: conteúdo da Fase 2 ==
