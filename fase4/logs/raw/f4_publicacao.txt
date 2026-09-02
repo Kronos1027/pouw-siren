@@ -52,3 +52,28 @@ linhas OK: 80
 == auditoria de vazamento (grep da chave no diretório e no versionado) ==
 OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+== git status (staged) ==
+A  fase4/logs/etapa12_publicacao.md
+MM fase4/logs/raw/f4_publicacao.txt
+== commit ==
+[main f2cb967] Etapa 12: log de publicacao da Fase 4 (integridade 80x OK + auditoria + push + conferencia remota)
+ 2 files changed, 102 insertions(+)
+ create mode 100644 fase4/logs/etapa12_publicacao.md
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   3887efc..f2cb967  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+f2cb967639cb5125dc2c7612d0e60e39462b1dc8	HEAD
+f2cb967639cb5125dc2c7612d0e60e39462b1dc8	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T04:55:22Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase4 (autenticada) ==
+entradas em fase4/: 4
+ - conferir_saida.py file 8651
+ - hashes_fase4.sha256 file 490
+ - logs dir 0
+ - validacao_cross_cpu_windows.md file 10461
+2026-09-02 04:55:24 UTC
