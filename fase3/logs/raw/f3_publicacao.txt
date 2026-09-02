@@ -53,3 +53,36 @@ OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
  M fase3/logs/raw/f3_publicacao.txt
 
 == commit final: logs de publicação (etapa10 + bruto) ==
+[main f528b09] Etapa 10: log de publicacao da Fase 3 (integridade 75x OK + auditoria + push + conferencia remota)
+ 1 file changed, 39 insertions(+)
+COMMIT: f528b09814f1bf52eb45c2fa7eb691ca9b2cf6ee
+
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   3043ba0..f528b09  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+f528b09814f1bf52eb45c2fa7eb691ca9b2cf6ee	HEAD
+f528b09814f1bf52eb45c2fa7eb691ca9b2cf6ee	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-02T03:58:08Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase3 (autenticada) ==
+entradas em fase3/: 10
+ - cadeia.py
+ - cadeia_demo
+ - experimento_lote.py
+ - experimento_retreino.py
+ - hashes_fase3.sha256
+ - logs
+ - relatorio_fase3.md
+ - smoke
+ - teste_negativo.py
+ - verificar_cadeia.py
+
+== estado final ==
+ M fase3/logs/raw/f3_publicacao.txt
+total de arquivos versionados: 154
+arquivos em fase3/: 52
+== PUBLICACAO FASE 3 — MODO 2 — FIM 2026-09-02 03:58:10 UTC ==
