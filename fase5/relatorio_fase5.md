@@ -289,8 +289,13 @@ python3 fase5/experimento_equivalencia.py
 **Windows:** o `verificar_int.py` é 100% stdlib — `python fase5\verificar_int.py
 fase5\pesos_int\pesos_int_cadeia_01.bin fase3\cadeia_demo\desafio_01.npy …`
 funciona sem instalar numpy/torch. A leitura é little-endian explícita;
-âncoras com `certutil -hashfile`. Este é o convite de validação externa desta
-fase (como o da F3 §11 foi atendido pela F4): rode os 8 blocos e reporte.
+âncoras com `certutil -hashfile` ou `python checar_integridade.py`.
+Desde a **v1.0.1** (errata §15), roda em qualquer Python testado
+**3.9–3.13** — inclusive 3.10/3.11, nos quais a v1.0.0 original falhava na
+auditoria zero-float (datetime/platform puxavam `math`). Este é o convite
+de validação externa desta fase (como o da F3 §11 foi atendido pela F4):
+rode os 8 blocos e reporte — roteiro pré-registrado em
+`fase6/roteiro_validacao_windows.md`.
 
 ## 11. Limitações (honestas e declaradas)
 
@@ -382,3 +387,24 @@ externamente (§10) e portá-lo a C (§9).
    pesos .bin como artefato primário (âncora de pesos, não de embalagem —
    §6), mantendo o .pt como artefato de mineração.
 4. Multi-minerário/forks e sinais reais/3D (roadmap herdado, abertos).
+
+## 15. Errata v1.0.1 — portabilidade do verificador (2026-09-15/16)
+
+Descoberta pela validação externa Windows (Fase 6): no Python **3.11.15** a
+auditoria zero-float do `verificar_int.py` v1.0.0 falhava com `['math']` — em
+Python ≤ 3.11, `import datetime` executa `import math as _math`
+(`Lib/datetime.py`) ANTES do acelerador C. A 1ª matriz pós-correção revelou um
+**segundo infiltrado**: em Python **3.10**, `import platform` puxa
+`subprocess → selectors → math` (`selectors.py` usava `math.ceil`; removido
+no 3.11). **Correção v1.0.1:** `agora_utc()` via `time.strftime/gmtime`
+(formato idêntico; `time` nunca carrega `math`) e banner via
+`sys.version.split()[0]` (idêntico a `platform.python_version()`).
+
+**Prova de inocuidade:** matriz 3.9.25/3.10.21/3.11.16/3.12.14/3.13.5 no
+bloco 1 com `--comp-esperado` + `--quantizada` — **5/5 VÁLIDOS, auditoria OK
+e compromisso `162d852c…` CONFERE bit-a-bit em todas** (o caminho
+computacional não mudou UM bit; logs em `fase5/logs/raw/f5_e6_correcao_*`).
+A auditoria zero-float somou suas **infiltrações nº 2 e nº 3** detectadas
+em runtime (a nº 1 fora `pathlib`, na F5) — e provou valer para manutenção,
+não só para o congelamento inicial. Documentação completa:
+`fase5/logs/etapa15_correcao_portabilidade.md`.

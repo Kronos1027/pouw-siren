@@ -1,0 +1,18 @@
+2026-09-15 23:37:23 UTC
+== Etapa 15 (PRÉ-correção): o mecanismo datetime→math, por versão ==
+(comando: import sys, datetime; print('math' in sys.modules))
+3.10.21 math_em_sys_modules= True
+3.11.16 math_em_sys_modules= True
+3.12.14 math_em_sys_modules= False
+3.13.5 math_em_sys_modules= False
+
+== PRÉ-correção: fase5/verificar_int.py no Python 3.11.16 (bloco 1) ==
+(esperado: auditoria zero-float FALHA — math infiltrado via datetime)
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 23:37:23 UTC
+Python 3.11.16 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+FALHOU: módulos de float carregados no processo: ['math']
+código de saída: 1
+2026-09-15 23:37:23 UTC

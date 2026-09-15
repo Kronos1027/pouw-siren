@@ -1,15 +1,17 @@
 #!/bin/sh
-# PoUW-SIREN — checagem de integridade dos artefatos publicados (Fases 1–5).
+# PoUW-SIREN — checagem de integridade dos artefatos publicados (Fases 1–6).
 # Recalcula o SHA-256 de todos os artefatos da pesquisa e compara com os
 # valores registrados em hashes.sha256 (Fase 1, 15 âncoras),
 # fase2/hashes_fase2.sha256 (Fase 2, 23 âncoras),
 # fase3/hashes_fase3.sha256 (Fase 3, 37 âncoras),
-# fase4/hashes_fase4.sha256 (Fase 4, 5 âncoras) e
-# fase5/hashes_fase5.sha256 (Fase 5, 40 âncoras), no formato sha256sum -c.
+# fase4/hashes_fase4.sha256 (Fase 4, 5 âncoras),
+# fase5/hashes_fase5.sha256 (Fase 5, 45 âncoras — v1.0.1/etapa15) e
+# fase6/hashes_fase6.sha256 (Fase 6, 2 âncoras), no formato sha256sum -c.
 #
-# Uso (Linux/macOS):   bash checar_integridade.sh          → 120× OK
-# Equivalente Linux:   sha256sum -c hashes.sha256 && sha256sum -c fase2/hashes_fase2.sha256 && sha256sum -c fase3/hashes_fase3.sha256 && sha256sum -c fase4/hashes_fase4.sha256 && sha256sum -c fase5/hashes_fase5.sha256
-# Equivalente macOS:   shasum -a 256 -c hashes.sha256 && shasum -a 256 -c fase2/hashes_fase2.sha256 && shasum -a 256 -c fase3/hashes_fase3.sha256 && shasum -a 256 -c fase4/hashes_fase4.sha256 && shasum -a 256 -c fase5/hashes_fase5.sha256
+# Uso (Linux/macOS):   bash checar_integridade.sh          → 127× OK
+# Equivalente Windows: python checar_integridade.py        → 127× OK (stdlib)
+# Equivalente Linux:   sha256sum -c hashes.sha256 && sha256sum -c fase2/hashes_fase2.sha256 && sha256sum -c fase3/hashes_fase3.sha256 && sha256sum -c fase4/hashes_fase4.sha256 && sha256sum -c fase5/hashes_fase5.sha256 && sha256sum -c fase6/hashes_fase6.sha256
+# Equivalente macOS:   shasum -a 256 -c hashes.sha256 && shasum -a 256 -c fase2/hashes_fase2.sha256 && shasum -a 256 -c fase3/hashes_fase3.sha256 && shasum -a 256 -c fase4/hashes_fase4.sha256 && shasum -a 256 -c fase5/hashes_fase5.sha256 && shasum -a 256 -c fase6/hashes_fase6.sha256
 # Windows:             certutil -hashfile receita_b0f90ffe.pt SHA256
 #                      (comparar manualmente com os arquivos de hashes)
 
@@ -39,3 +41,6 @@ $CMD fase4/hashes_fase4.sha256 || exit 1
 echo
 echo "== Fase 5 (fase5/hashes_fase5.sha256) =="
 $CMD fase5/hashes_fase5.sha256 || exit 1
+echo
+echo "== Fase 6 (fase6/hashes_fase6.sha256) =="
+$CMD fase6/hashes_fase6.sha256 || exit 1

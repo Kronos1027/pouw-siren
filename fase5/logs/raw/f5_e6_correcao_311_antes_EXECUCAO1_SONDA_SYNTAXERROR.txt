@@ -1,0 +1,30 @@
+2026-09-15 23:36:41 UTC
+== Etapa 15 (PRÉ-correção): o mecanismo datetime→math, por versão ==
+(comando: import sys, datetime; print('math' in sys.modules))
+  File "<string>", line 1
+    import sys, datetime; v=sys.version.split()[0]; print(f"{v:10s} math_em_sys_modules={\"math\" in sys.modules}")
+                                                                                                                  ^
+SyntaxError: f-string expression part cannot include a backslash
+  File "<string>", line 1
+    import sys, datetime; v=sys.version.split()[0]; print(f"{v:10s} math_em_sys_modules={\"math\" in sys.modules}")
+                                                                                                                  ^
+SyntaxError: f-string expression part cannot include a backslash
+  File "<string>", line 1
+    import sys, datetime; v=sys.version.split()[0]; print(f"{v:10s} math_em_sys_modules={\"math\" in sys.modules}")
+                                                                                          ^
+SyntaxError: unexpected character after line continuation character
+  File "<string>", line 1
+    import sys, datetime; v=sys.version.split()[0]; print(f"{v:10s} math_em_sys_modules={\"math\" in sys.modules}")
+                                                                                          ^
+SyntaxError: unexpected character after line continuation character
+
+== PRÉ-correção: fase5/verificar_int.py no Python 3.11.16 (bloco 1) ==
+(esperado: auditoria zero-float FALHA — math infiltrado via datetime)
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 23:36:41 UTC
+Python 3.11.16 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+FALHOU: módulos de float carregados no processo: ['math']
+código de saída: 1
+2026-09-15 23:36:41 UTC

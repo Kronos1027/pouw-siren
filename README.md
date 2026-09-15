@@ -1,4 +1,4 @@
-# PoUW-SIREN — Proof of Useful Work via compressão neural (Fases 1–5, CPU-only)
+# PoUW-SIREN — Proof of Useful Work via compressão neural (Fases 1–6, CPU-only)
 
 Pesquisa exploratória: usar **compressão neural (SIREN — Implicit Neural Representation)** como
 "trabalho útil" no lugar da queima de hash do Proof-of-Work tradicional. O minerador **treina**
@@ -9,6 +9,16 @@ a receita reconstrói o sinal a ~49 dB de PSNR, em vez de virar lixo entrópico 
 bitcoin.
 
 Projeto-irmão / motivação: [Kronos1027/black-hole](https://github.com/Kronos1027/black-hole).
+
+## Fase 6 (2026-09-16): correção de portabilidade v1.0.1 do verificador + validação externa Windows (em andamento)
+
+**Descoberta pela validação externa:** ao rodar o verificador frio no Windows/**Python 3.11.15**, o dono do repo viu a auditoria zero-float falhar com `['math']` — em Python ≤ 3.11, `import datetime` executa `import math as _math` (Lib/datetime.py) ANTES do acelerador C. No **Python 3.12.13** o mesmo comando passou (1ª rodada: **8/8 blocos VÁLIDOS, 0/32.768 bins divergentes**). A matriz de correção revelou um **segundo infiltrado**: em Python **3.10**, `import platform` puxa `subprocess → selectors → math` (`selectors.py` usava `math.ceil`; removido no 3.11).
+
+**Correção v1.0.1** (`fase5/logs/etapa15_correcao_portabilidade.md`): `agora_utc()` via `time.strftime/gmtime` e banner via `sys.version.split()[0]` — saídas **idênticas**, e `time`/`sys` não carregam `math` em nenhuma versão. **Prova de inocuidade:** matriz Linux **3.9.25 / 3.10.21 / 3.11.16 / 3.12.14 / 3.13.5** no bloco 1 com âncoras completas — **5/5 VÁLIDOS, compromisso `162d852c…` CONFERE bit-a-bit em todas** (o caminho computacional não mudou um bit). A auditoria zero-float soma as **infiltrações nº 2 e nº 3** detectadas em runtime (a nº 1 foi `pathlib`, na F5).
+
+**Campanha externa (padrão F4):** roteiro **pré-registrado** para a rodada pós-correção no Windows — 8 blocos no 3.11.15 com compromissos completos, suíte adversarial E4, equivalência das 18 receitas (E3+E5+8 frios) e re-confirmação no 3.12.13 — em `fase6/roteiro_validacao_windows.md` (predições com valores medidos; tempos declarados não-critério).
+
+**Novo artefato:** `checar_integridade.py` — equivalente multiplataforma do `checar_integridade.sh` (100% stdlib, saída ASCII pura, tolerante a CRLF): `python checar_integridade.py` → **127/127 âncoras**.
 
 ## Fase 5 (2026-09-15): caminho de verificação 100% INTEIRO (pouw-int-v1) — o último risco teórico de determinismo, fechado por construção
 
@@ -69,7 +79,8 @@ SHA-256 dos bytes big-endian. Resultados centrais (tudo medido; relatório compl
 
 ```bash
 git clone https://github.com/Kronos1027/pouw-siren.git && cd pouw-siren
-bash checar_integridade.sh                 # 120 âncoras (15 F1 + 23 F2 + 37 F3 + 5 F4 + 40 F5) → 120× OK
+bash checar_integridade.sh                 # 127 âncoras (15 F1 + 23 F2 + 37 F3 + 5 F4 + 45 F5 + 2 F6) → 127× OK
+python checar_integridade.py               # equivalente Windows/multiplataforma → 127× OK
 
 python3 fase2/verificar_fase2.py receita_b0f90ffe.pt desafio_b0f90ffe.npy --alvo-psnr 40
 # esperado (predição registrada ANTES de você rodar — relatório §10):
@@ -187,7 +198,8 @@ pip install torch --index-url https://download.pytorch.org/whl/cpu
 git clone https://github.com/Kronos1027/pouw-siren.git
 cd pouw-siren
 
-bash checar_integridade.sh        # 120× OK (Fases 1–5)
+bash checar_integridade.sh        # 127× OK (Fases 1–6)
+python checar_integridade.py      # idem, multiplataforma (Windows incluso)
 
 # Fase 1 (float32 — na MESMA máquina os hashes batem; em OUTRA CPU pode divergir no último bit)
 python3 -u verificar.py receita_b0f90ffe.pt desafio_b0f90ffe.npy
@@ -269,7 +281,8 @@ pouw-siren/
 ├── README.md                  ← você está aqui
 ├── relatorio_fase1.md         ← F1: tabela, decisões, comandos, 11 limitações
 ├── hashes.sha256              ← âncoras F1 (15)
-├── checar_integridade.sh      ← checa as 120 âncoras (F1 + F2 + F3 + F4 + F5)
+├── checar_integridade.sh      ← checa as 127 âncoras (F1 + F2 + F3 + F4 + F5 + F6)
+├── checar_integridade.py      ← idem, multiplataforma (Windows incluso; saída ASCII)
 ├── requirements.txt
 ├── desafio.py                 ← F1 ETAPA 1: gerador determinístico de desafios 64×64
 ├── treinar.py                 ← F1 ETAPA 2: treino SIREN (CPU) → receita .pt (intocado na F2/F3)
@@ -307,8 +320,8 @@ pouw-siren/
 │   ├── conferir_saida.py      ← confere output do verificar_cadeia.py vs cadeia oficial
 │   └── logs/etapa11 + logs/raw/*.txt ← output VERBATIM do validador + conferência do agente
 └── fase5/
-    ├── relatorio_fase5.md     ← F5: spec pouw-int-v1, E2–E5, 12 limitações
-    ├── hashes_fase5.sha256    ← 40 âncoras da F5
+    ├── relatorio_fase5.md     ← F5: spec pouw-int-v1, E2–E5, 12 limitações (+ errata §15)
+    ├── hashes_fase5.sha256    ← 45 âncoras da F5 (v1.0.1/etapa15)
     ├── siren_int.py           ← spec canônica do caminho 100% INTEIRO (Q63, zero floats)
     ├── verificar_int.py       ← verificador frio stdlib-only + auditoria zero-float runtime
     ├── exportar_pesos_int.py  ← .pt → .bin de pesos inteiros (conversão por bits)
@@ -317,7 +330,10 @@ pouw-siren/
     ├── experimento_equivalencia.py ← E3+E5: 18 receitas v1×v2 + 8 execuções frias
     ├── teste_negativo_int.py  ← E4: sweep de sensibilidade + 6 fraudes
     ├── pesos_int/ (18)        ← pesos inteiros Q63 canônicos (.bin int64 LE)
-    └── logs/etapa13 + logs/raw/*.txt ← outputs brutos (incl. 4 execuções com erro preservadas)
+    └── logs/etapa13+15 + logs/raw/*.txt ← outputs brutos (incl. 6 execuções com erro preservadas)
+└── fase6/
+    ├── roteiro_validacao_windows.md ← protocolo PRÉ-REGISTRADO da validação externa Windows
+    └── hashes_fase6.sha256    ← 2 âncoras (+ logs do validador quando reportados)
 ```
 
 `desafio.py` é o código do prompt original com **2 correções mínimas documentadas**

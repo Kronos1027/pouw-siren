@@ -11,10 +11,15 @@ pouw-int-v1 SEM NENHUMA operação de ponto flutuante:
   → gate de qualidade como desigualdade inteira exata.
 
 PROVA DE AUSÊNCIA DE FLOATS (auditoria em runtime):
-  - o processo importa SOMENTE stdlib sem floats: argparse, ast, datetime,
-    hashlib, os, platform, sys, time (e siren_int.py, que importa os mesmos;
-    pathlib foi excluído de propósito: ele importa math — a auditoria
-    zero-float detectou a infiltracão e ela está registrada no log);
+  - o processo importa SOMENTE stdlib sem floats: argparse, ast, hashlib,
+    os, sys, time (e siren_int.py, que importa os mesmos); pathlib,
+    datetime e platform foram excluídos DE PROPÓSITO — cada um deles puxa
+    math em alguma versão do Python, e a auditoria zero-float detectou os
+    três em runtime: pathlib (F5, log f5_verificar_int_frio_bloco1.txt),
+    datetime (Python <= 3.11, "import math as _math" em Lib/datetime.py —
+    pegou na máquina Windows do dono, 3.11.15) e platform (Python 3.10,
+    via subprocess → selectors, que usava math.ceil — ver
+    fase5/logs/etapa15_correcao_portabilidade.md);
   - a auditoria confere em sys.modules que math/cmath/numpy/torch/scipy/
     decimal/fractions/statistics/random NUNCA foram carregados;
   - até a MEDIÇÃO DE TEMPO é inteira: time.perf_counter_ns (nanossegundos),
@@ -42,10 +47,8 @@ Uso (a partir da raiz do repositório):
 import argparse
 import hashlib
 import os
-import platform
 import sys
 import time
-from datetime import datetime, timezone
 
 # NOTA: pathlib NÃO é importado de propósito — ele puxa math (auditoria
 # zero-float pegou a infiltracão em runtime; ver log f5_verificar_int_frio_bloco1.txt)
@@ -59,7 +62,13 @@ from siren_int import (  # noqa: E402  (mesmos imports puros do módulo da spec)
 
 
 def agora_utc():
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    # v1.0.1: time em vez de datetime — em Python <= 3.11, 'import datetime'
+    # executa 'import math as _math' (Lib/datetime.py) e infiltrava math no
+    # processo, derrubando a auditoria zero-float (falhou assim no Windows do
+    # dono, Python 3.11.15, e na matriz local 3.10/3.11). O módulo time não
+    # carrega math em NENHUMA versão do Python. Formato de saída IDÊNTICO ao
+    # anterior ("YYYY-MM-DD HH:MM:SS UTC"); compromissos NÃO são afetados.
+    return time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
 
 
 def fmt_ns(ns):
@@ -95,7 +104,11 @@ def main():
     print("== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, "
           f"{VERSAO_SPEC}) ==")
     print(f"INICIO {agora_utc()}")
-    print(f"Python {platform.python_version()} | byteorder da máquina: {sys.byteorder} "
+    # v1.0.1: sys.version em vez de platform.python_version() — no Python
+    # 3.10, 'import platform' puxa subprocess → selectors → math e derruba
+    # a auditoria zero-float (detectado na matriz local 3.10). Saída
+    # IDÊNTICA: sys.version.split()[0] == platform.python_version().
+    print(f"Python {sys.version.split()[0]} | byteorder da máquina: {sys.byteorder} "
           "(leituras são little-endian EXPLÍCITAS — portável)")
     print()
     print("-- AUDITORIA ZERO-FLOAT (runtime) --")
@@ -105,8 +118,9 @@ def main():
         raise SystemExit(1)
     print("OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random "
           "AUSENTES de sys.modules")
-    print("Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time "
-          "+ siren_int (idem)")
+    print("Imports do processo: apenas argparse/ast/hashlib/os/sys/time "
+          "+ siren_int (idem; datetime e platform removidos na v1.0.1 — "
+          "puxavam math em Python <=3.11 e =3.10)")
     print("Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float "
           "é materializado neste processo")
 

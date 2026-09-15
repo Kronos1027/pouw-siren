@@ -1,0 +1,5 @@
+2026-09-15 23:56:33 UTC
+== publicar_fase6_abertura.sh modo 1: commit v1.0.1 + roteiro F6 + push ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
