@@ -3,3 +3,55 @@
 == auditoria de vazamento (grep da chave no diretório e no versionado) ==
 OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+== git status (staged) ==
+M  README.md
+A  checar_integridade.py
+M  checar_integridade.sh
+M  fase5/hashes_fase5.sha256
+A  fase5/logs/etapa15_correcao_portabilidade.md
+A  fase5/logs/raw/f5_e6_correcao_311_antes.txt
+A  fase5/logs/raw/f5_e6_correcao_311_antes_EXECUCAO1_SONDA_SYNTAXERROR.txt
+A  fase5/logs/raw/f5_e6_correcao_pos.txt
+A  fase5/logs/raw/f5_e6_correcao_pos_EXECUCAO1_PLATAFORMA_310.txt
+M  fase5/relatorio_fase5.md
+M  fase5/verificar_int.py
+A  fase6/hashes_fase6.sha256
+AM fase6/logs/raw/f6_publicacao.txt
+A  fase6/roteiro_validacao_windows.md
+== commit ==
+[main 9283a75] Etapa 15 / v1.0.1: correção de portabilidade do verificar_int.py — datetime removido (Python <=3.11 importa math via Lib/datetime.py; descoberto na validação Windows do dono, 3.11.15) e platform removido (3.10: subprocess->selectors->math; descoberto pela 1a matriz pós-correção, preservada em _EXECUCAO1_); agora_utc() via time.strftime (formato idêntico; time nunca carrega math) e banner via sys.version.split()[0]; MATRIZ Linux 3.9.25/3.10.21/3.11.16/3.12.14/3.13.5 no bloco 1 com âncoras completas: 5/5 VÁLIDOS, compromisso 162d852c... CONFERE bit-a-bit em TODAS (caminho computacional intocado); auditoria zero-float soma infiltrações nº2 (datetime) e nº3 (platform) — a nº1 fora pathlib na F5; + errata §15 do relatorio_fase5.md; + checar_integridade.py (equivalente Windows/multiplataforma do .sh: stdlib puro, saída ASCII, tolerante a CRLF — 127/127); Fase 6 aberta: roteiro de validação externa Windows PRÉ-REGISTRADO (fase6/roteiro_validacao_windows.md — predições 100% medidas: 8 blocos no 3.11.15 com compromissos completos, E4 adversarial, E3 18 receitas + 8 frios, re-confirmação 3.12.13, opcional 3.10 via uv); âncoras 120->127 (F5 40->45: +etapa15 +2 raws oficiais +2 preservados _EXECUCAO1_; F6 +2: roteiro + checador)
+ 14 files changed, 965 insertions(+), 27 deletions(-)
+ create mode 100644 checar_integridade.py
+ create mode 100644 fase5/logs/etapa15_correcao_portabilidade.md
+ create mode 100644 fase5/logs/raw/f5_e6_correcao_311_antes.txt
+ create mode 100644 fase5/logs/raw/f5_e6_correcao_311_antes_EXECUCAO1_SONDA_SYNTAXERROR.txt
+ create mode 100644 fase5/logs/raw/f5_e6_correcao_pos.txt
+ create mode 100644 fase5/logs/raw/f5_e6_correcao_pos_EXECUCAO1_PLATAFORMA_310.txt
+ create mode 100644 fase6/hashes_fase6.sha256
+ create mode 100644 fase6/logs/raw/f6_publicacao.txt
+ create mode 100644 fase6/roteiro_validacao_windows.md
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   417eeae..9283a75  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+9283a7500e94cc8692de2ed56b892027a2846bc0	HEAD
+9283a7500e94cc8692de2ed56b892027a2846bc0	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-15T23:56:34Z
+branch   : main
+message  : None
+== conferência remota: API GET /commits/main (autenticada) ==
+HEAD remoto: 9283a7500e94cc8692de2ed56b892027a2846bc0
+data       : 2026-09-15T23:56:33Z
+mensagem   : Etapa 15 / v1.0.1: correção de portabilidade do verificar_int.py — datetime removido (Pyth
+== integridade pós-push (âncoras totais) ==
+TOTAL: 127/127 ancoras OK
+
+RESULTADO: INTEGRO (codigo 0)
+2026-09-15 23:56:36 UTC
+2026-09-15 23:56:47 UTC
+== publicar_fase6_abertura.sh modo 2: commit do log de publicação (fecho) ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
