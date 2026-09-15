@@ -126,3 +126,38 @@ linhas OK: 120
 == auditoria de vazamento (grep da chave no diretório e no versionado) ==
 OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+== git status (staged) ==
+A  fase5/logs/etapa14_publicacao.md
+MM fase5/logs/raw/f5_publicacao.txt
+== commit ==
+[main da4f5b9] Etapa 14: log de publicação da Fase 5 (integridade das âncoras + auditoria + push + conferência remota)
+ 2 files changed, 147 insertions(+)
+ create mode 100644 fase5/logs/etapa14_publicacao.md
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   11afff4..da4f5b9  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+da4f5b9b412fcd52b70f38bc4f9a09cac35cd268	HEAD
+da4f5b9b412fcd52b70f38bc4f9a09cac35cd268	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-15T02:09:25Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase5 (autenticada) ==
+entradas em fase5/: 11
+ - experimento_equivalencia.py file 9161
+ - experimento_ordem.py file 10367
+ - exportar_pesos_int.py file 5465
+ - hashes_fase5.sha256 file 4189
+ - logs dir 0
+ - pesos_int dir 0
+ - relatorio_fase5.md file 22799
+ - siren_int.py file 23736
+ - smoke_int.py file 12549
+ - teste_negativo_int.py file 9433
+ - verificar_int.py file 9096
+2026-09-15 02:09:27 UTC
+2026-09-15 02:09:57 UTC
+== fecho: versão integral do log bruto de publicação da F5 (linhas gravadas após o commit da4f5b9) ==
+auditoria de token: OK (ausente do diretório)
