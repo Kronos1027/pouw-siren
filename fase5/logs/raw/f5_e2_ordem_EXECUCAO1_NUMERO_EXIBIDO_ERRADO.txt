@@ -1,0 +1,36 @@
+== experimento_ordem.py — PoUW Fase 5 (E2: invariância à ordem de soma) ==
+INICIO 2026-09-15 01:11:31 UTC
+numpy 2.1.3 (contraste float64) | siren_int (lado inteiro)
+objeto: camada 2 da receita_01 — 128 unidades × 128 canais × 4096 pontos
+       = 67,108,864 termos somados POR ORDEM
+
+-- INTEIRO (Q126 exato, bigint): 3 ordens × 128 unidades --
+camada 1 (Q63) pronta: 128 canais × 4096 pontos (2.89 s)
+ordem direta  (canal 0→127): 128 unidades em 8.96 s
+ordem reversa (canal 127→0): 128 unidades em 9.04 s
+    vs direta: valores bit-a-bit diferentes = 0 (de 524,288)
+ordem árvore pareada        : 128 unidades em 11.68 s
+    vs direta: valores bit-a-bit diferentes = 0 (de 524,288)
+
+-- FLOAT64 (mesmos operandos em float): 3 ordens + BLAS --
+ordem direta  : 0.68 s
+ordem reversa : 0.65 s
+ordem árvore  : 0.74 s
+GEMM do BLAS  : 0.007 s
+
+pares (max|Δz| float64, valores bit-a-bit ≠, bins B16 que viram):
+  direta  × reversa: max|Δz| = 3.886e-16 | bit-a-bit ≠ = 470,515 | bins ≠ = 0
+  direta  × árvore : max|Δz| = 2.776e-16 | bit-a-bit ≠ = 461,148 | bins ≠ = 0
+  direta  × BLAS   : max|Δz| = 3.331e-16 | bit-a-bit ≠ = 466,038 | bins ≠ = 0
+  reversa × árvore : max|Δz| = 3.053e-16 | bit-a-bit ≠ = 460,976 | bins ≠ = 0
+  reversa × BLAS   : max|Δz| = 3.053e-16 | bit-a-bit ≠ = 469,440 | bins ≠ = 0
+  árvore  × BLAS   : max|Δz| = 1.665e-16 | bit-a-bit ≠ = 374,287 | bins ≠ = 0
+
+-- LEITURA --
+INTEIRO: as 3 ordens produziram o MESMO acumulador bit-a-bit (0 de
+16.777.216 valores diferentes) — exatidão por CONSTRUÇÃO (adição de
+inteiros é associativa; não depende de máquina, BLAS ou ordem).
+FLOAT64: os pares acima mostram o resíduo real de ordem de soma que
+a margem da grade B=16 precisa absorver (e absorve: bins = 0 aqui).
+Esse resíduo é EMPÍRICO — pode mudar de máquina/BLAS; o inteiro não.
+FIM 2026-09-15 01:12:07 UTC

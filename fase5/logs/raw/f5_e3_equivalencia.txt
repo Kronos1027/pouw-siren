@@ -1,0 +1,125 @@
+== experimento_equivalencia.py — PoUW Fase 5 (E3 equivalência + E5 custos) ==
+INICIO 2026-09-15 01:48:10 UTC
+Python 3.12.14 | torch 2.14.0+cpu | numpy 2.1.3
+v1 = float64 + BLAS + libm (torch, 1 thread) | v2 = inteiros Q63 (siren_int)
+receitas: 18 (8 cadeia + 4 F1 + 6 F2)
+
+tag            |  PSNR v1 |  gate v1 |  gate v2 |  bins≠ |   max|ΔR| | payload |  comp v2 (16 hex) | t v1 (s) | t v2 (s)
+cadeia_01      |  47.8726 |    APROV |    APROV |      0 |  7.33e-15 |       = | 162d852c6b603f0c… |   0.0194 |    26.43
+               comp v1: cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7
+cadeia_02      |  48.4494 |    APROV |    APROV |      0 |  7.77e-15 |       = | 9366457358ebfdcb… |   0.0172 |    26.39
+               comp v1: 0fff8405892f2d0fa4732d82091d4672de25ad5db72af82e8748b24347a79a8f
+cadeia_03      |  48.6712 |    APROV |    APROV |      0 |  7.83e-15 |       = | 32e7e3efb99e48a8… |   0.0174 |    26.68
+               comp v1: 7cd2df64afce402e3b0e4253f49866972c75309aef0a6d8fcbc646eb687dd830
+cadeia_04      |  48.4106 |    APROV |    APROV |      0 |  7.99e-15 |       = | 3d34616b5ce20c03… |   0.0176 |    26.76
+               comp v1: f388b1c19f74c7ab6a66136b39698115832bc72956b726c77188c471f8b83cd5
+cadeia_05      |  48.8548 |    APROV |    APROV |      0 |  6.69e-15 |       = | 5573254afe060d85… |   0.0172 |    27.17
+               comp v1: 5cd04941ad0e99764aac17c252a1c05be2940fafed535e72e16abf285dd353f5
+cadeia_06      |  50.1790 |    APROV |    APROV |      0 |  7.22e-15 |       = | cad3861e224de406… |   0.0175 |    27.16
+               comp v1: d91f50f3699d5bfa8bc55613e170f7e74ca325fb2972a9041d710f2bea70169b
+cadeia_07      |  47.0671 |    APROV |    APROV |      0 |  5.55e-15 |       = | 5123013656af90be… |   0.0178 |    27.36
+               comp v1: f0d4ab32fe138b9174bdb66d780003c36e97bf9360ad44fe3a871a9d277ea3a6
+cadeia_08      |  44.7247 |    APROV |    APROV |      0 |  1.31e-14 |       = | f83468725ccbed6e… |   0.0173 |    27.53
+               comp v1: eece79b0314d8d040f5d5e4d410a0b7ba9efe022fa7594a6f02f9c68d0f9a917
+f1_8b457d0a    |  49.2587 |    APROV |    APROV |      0 |  6.00e-15 |       = | 61dd3a86b1b35390… |   0.0168 |    27.47
+               comp v1: 8397befca9f69cfcc9da2fc0e7719c8fa6b7c1cc5612a8236c6cc1e8fc544f4a
+f1_b0f90ffe    |  49.6253 |    APROV |    APROV |      0 |  6.33e-15 |       = | 0ee90ec7eb7f38b1… |   0.0200 |    27.57
+               comp v1: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+f1_d037aef4    |  48.3896 |    APROV |    APROV |      0 |  5.33e-15 |       = | de0dbdd311f43f19… |   0.0169 |    27.73
+               comp v1: b4b6df845ea4861d8ed4071b463828dcdb40725ccdf471f8993c07031a0e20bd
+f1_extra60db   |  60.8704 |    APROV |    APROV |      0 |  6.22e-15 |       = | 2d76414c5549e969… |   0.0170 |    27.89
+               comp v1: 92b6fe06dde1cd1c07120eb6f8c96e3179d230a2e3ee0c01840106c1e54af0da
+f2_alvo40db    |  49.6253 |    APROV |    APROV |      0 |  6.33e-15 |       = | 0ee90ec7eb7f38b1… |   0.0173 |    27.95
+               comp v1: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+f2_alvo45db    |  49.6253 |    APROV |    APROV |      0 |  6.33e-15 |       = | 0ee90ec7eb7f38b1… |   0.0170 |    28.00
+               comp v1: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+f2_alvo50db    |  54.5661 |    APROV |    APROV |      0 |  5.33e-15 |       = | 831c5b0c651b8951… |   0.0173 |    27.91
+               comp v1: d2614c0874921687ab18c60c676f35632b1bf300788e4d47e317f489b1f6a80d
+f2_alvo55db    |  57.3701 |    APROV |    APROV |      0 |  5.44e-15 |       = | 762e585ecd348864… |   0.0171 |    28.01
+               comp v1: 9b4584f3423721dd1df68b800747eb42bc2d70b8aae264ea84d5ac5902bffcfc
+f2_alvo60db    |  60.8704 |    APROV |    APROV |      0 |  6.22e-15 |       = | 2d76414c5549e969… |   0.0164 |    27.96
+               comp v1: 92b6fe06dde1cd1c07120eb6f8c96e3179d230a2e3ee0c01840106c1e54af0da
+f2_alvo65db    |  65.0004 |    APROV |    APROV |      0 |  5.33e-15 |       = | bf19114204cb4e99… |   0.0176 |    27.91
+               comp v1: 18d77b205ad947f72415aae1866d3fe51dae4ed58908a3399306448a2ff7e816
+
+-- RESUMO E3 --
+receitas: 18 | payloads quantizados v1≡v2 bit-a-bit: 18/18 | gates concordantes: 18/18
+bins divergentes no total: 0 (de 73728) | max|ΔR| global: 1.310e-14 (passo B=16 ≈ 1,5e-4…1,6e-4)
+
+-- RESUMO E5 (custos) --
+forward v1 (float64/BLAS): média 0.0175 s | total 0.315 s
+forward v2 (bigint Q63)  : média 27.44 s | total 493.9 s
+razão v2/v1: 1569× (custo da exatidão por construção em Python puro; ver limitações do relatório)
+
+-- DEMONSTRAÇÃO OFICIAL: 8 verificações FRIO do verificar_int.py --
+(subprocessos próprios; âncoras completas; auditoria zero-float em cada um)
+[bloco 1] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000364 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be
+    C1 vs esperado   : 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_01_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 2] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000411 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 9366457358ebfdcb9809665c8967b3936bbe5e7c190a6154510518dcbbd74569
+    C1 vs esperado   : 9366457358ebfdcb9809665c8967b3936bbe5e7c190a6154510518dcbbd74569 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_02_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 3] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000219 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 32e7e3efb99e48a8f469433aeda4c1f4ca97ec5921cf27b91d8b832c1b779582
+    C1 vs esperado   : 32e7e3efb99e48a8f469433aeda4c1f4ca97ec5921cf27b91d8b832c1b779582 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_03_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 4] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000248 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 3d34616b5ce20c032ac1eddbf057b93ad8c24998b33cbf469c5daf2f07dab3e1
+    C1 vs esperado   : 3d34616b5ce20c032ac1eddbf057b93ad8c24998b33cbf469c5daf2f07dab3e1 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_04_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 5] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000342 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 5573254afe060d85f5a56f221fb100869eb686da1389785412a4582ac13613f5
+    C1 vs esperado   : 5573254afe060d85f5a56f221fb100869eb686da1389785412a4582ac13613f5 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_05_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 6] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000302 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: cad3861e224de406a3f70b43ea6ba0306687d4de6edca13095e2241f4e7f5bc2
+    C1 vs esperado   : cad3861e224de406a3f70b43ea6ba0306687d4de6edca13095e2241f4e7f5bc2 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_06_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 7] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000320 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: 5123013656af90be0ff8c0be986354c15cef757d107482bff854b785b1be3855
+    C1 vs esperado   : 5123013656af90be0ff8c0be986354c15cef757d107482bff854b785b1be3855 → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_07_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+[bloco 8] código 0
+    -- AUDITORIA ZERO-FLOAT (runtime) --
+    OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+    TOTAL (carga → gate): 26.000417 s
+    COMPROMISSO pouw-int-v1|B=16|64x64|: f83468725ccbed6e62d0d3933ce1e367c4f2c9a08a248753e91505d8b90986eb
+    C1 vs esperado   : f83468725ccbed6e62d0d3933ce1e367c4f2c9a08a248753e91505d8b90986eb → CONFERE
+    C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_08_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+    RESULTADO: VÁLIDO (código 0)
+verificações frias VÁLIDAS: 8/8
+
+-- VEREDICTO --
+E3: 18/18 payloads idênticos, 18/18 gates concordantes; E5: razão 1569×; frios: 8/8 VÁLIDOS
+RESULTADO: EQUIVALÊNCIA CONFIRMADA (código 0)
+FIM 2026-09-15 01:59:55 UTC

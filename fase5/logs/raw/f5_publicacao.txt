@@ -1,0 +1,5 @@
+2026-09-15 02:08:47 UTC
+== publicar_fase5.sh modo 1: commit da Fase 5 + push ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)

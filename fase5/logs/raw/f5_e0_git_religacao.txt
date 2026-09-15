@@ -1,0 +1,29 @@
+=== RECUPERACAO DE AMBIENTE: RELIGACAO GIT + TESTE DO TOKEN ===
+2026-09-15 00:42:32 UTC
+
+== 1) teste do token (GET /user; chave nao impressa) ==
+HTTP 200
+login: Kronos1027 | id: 84149831
+
+== 2) re-init do repositorio local (historico foi perdido no restore) ==
+Initialized empty Git repository in /home/z/my-project/download/pouw_fase1/.git/
+remote adicionado (URL limpa, sem token)
+
+== 3) fetch do historico completo ==
+From https://github.com/Kronos1027/pouw-siren
+ * [new branch]      main       -> origin/main
+
+== 4) reset --hard origin/main (conteudo ja validado por 80 ancoras) ==
+HEAD is now at e85bfff Etapa 12 (fecho 2): verificacao pos-publicacao - integridade 80x OK no estado final (7919449) + conferencia binaria remota byte-a-bit dos artefatos ancorados da Fase 4 (evidencia verbatim e relatorio)
+
+== 5) estado final ==
+e85bfff Etapa 12 (fecho 2): verificacao pos-publicacao - integridade 80x OK no estado final (7919449) + conferencia binaria remota byte-a-bit dos artefatos ancorados da Fase 4 (evidencia verbatim e relatorio)
+7919449 Fecho: versao integral do log bruto de publicacao da Fase 4 (linhas gravadas apos o commit f2cb967, mesmo fechamento documental da Fase 3)
+f2cb967 Etapa 12: log de publicacao da Fase 4 (integridade 80x OK + auditoria + push + conferencia remota)
+3887efc Fase 4 - validacao cross-CPU EXTERNA da cadeia (Windows, dono do repo, item 1 do roadmap F4): 8/8 blocos VALIDOS com compromissos bit-a-bit em SO/Python/PyTorch/NumPy todos diferentes do ambiente de mineracao; integridade 75/75 ancoras no clone do validador; as 3 predicoes do relatorio F3 secao 11 confirmadas (compromissos, libm/C2, bytes npy); conferencia formal do output verbatim contra o cadeia.json oficial pelo novo fase4/conferir_saida.py (8/8 CONFERE, log bruto); +5 ancoras SHA-256 (80 total); README (limitacao 2 fechada com validacao externa, dica Windows autocrlf) e checar_integridade.sh atualizados; evidencia de terceiro citada como tal (protocolo item 7)
+?? fase5/
+(fase5/ nao rastreado e esperado)
+
+== 6) integridade re-verificada pos-reset ==
+ancoras OK: 80/80
+2026-09-15 00:42:34 UTC

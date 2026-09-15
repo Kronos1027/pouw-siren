@@ -1,0 +1,90 @@
+=== RECUPERACAO DE AMBIENTE: INTEGRIDADE POS-RESTORE ===
+2026-09-15 00:41:30 UTC
+
+--- hashes.sha256 (F1, 15) ---
+desafio.py: OK
+treinar.py: OK
+verificar.py: OK
+checagem_torchsave.py: OK
+checagem_retreino.py: OK
+desafio_b0f90ffe.npy: OK
+desafio_d037aef4.npy: OK
+desafio_8b457d0a.npy: OK
+receita_b0f90ffe.pt: OK
+receita_d037aef4.pt: OK
+receita_8b457d0a.pt: OK
+receita_extra_60db_b0f90ffe.pt: OK
+reconstrucao_b0f90ffe.npy: OK
+reconstrucao_d037aef4.npy: OK
+reconstrucao_8b457d0a.npy: OK
+--- fase2/hashes_fase2.sha256 (23) ---
+fase2/quantizar.py: OK
+fase2/siren_numpy.py: OK
+fase2/verificar_fase2.py: OK
+fase2/experimento_caminhos.py: OK
+fase2/experimento_ruido.py: OK
+fase2/experimento_dificuldade.py: OK
+fase2/experimento_prefixo.py: OK
+fase2/receita_alvo40db_b0f90ffe.pt: OK
+fase2/receita_alvo45db_b0f90ffe.pt: OK
+fase2/receita_alvo50db_b0f90ffe.pt: OK
+fase2/receita_alvo55db_b0f90ffe.pt: OK
+fase2/receita_alvo60db_b0f90ffe.pt: OK
+fase2/receita_alvo65db_b0f90ffe.pt: OK
+fase2/quantizada_alvo40db_b0f90ffe_u16.npy: OK
+fase2/quantizada_alvo45db_b0f90ffe_u16.npy: OK
+fase2/quantizada_alvo50db_b0f90ffe_u16.npy: OK
+fase2/quantizada_alvo55db_b0f90ffe_u16.npy: OK
+fase2/quantizada_alvo60db_b0f90ffe_u16.npy: OK
+fase2/quantizada_alvo65db_b0f90ffe_u16.npy: OK
+quantizada_b0f90ffe_u16.npy: OK
+quantizada_d037aef4_u16.npy: OK
+quantizada_8b457d0a_u16.npy: OK
+quantizada_extra_60db_b0f90ffe_u16.npy: OK
+--- fase3/hashes_fase3.sha256 (37) ---
+fase3/cadeia.py: OK
+fase3/verificar_cadeia.py: OK
+fase3/teste_negativo.py: OK
+fase3/experimento_lote.py: OK
+fase3/experimento_retreino.py: OK
+fase3/cadeia_demo/cadeia.json: OK
+fase3/cadeia_demo/desafio_01.npy: OK
+fase3/cadeia_demo/desafio_02.npy: OK
+fase3/cadeia_demo/desafio_03.npy: OK
+fase3/cadeia_demo/desafio_04.npy: OK
+fase3/cadeia_demo/desafio_05.npy: OK
+fase3/cadeia_demo/desafio_06.npy: OK
+fase3/cadeia_demo/desafio_07.npy: OK
+fase3/cadeia_demo/desafio_08.npy: OK
+fase3/cadeia_demo/receita_01.pt: OK
+fase3/cadeia_demo/receita_02.pt: OK
+fase3/cadeia_demo/receita_03.pt: OK
+fase3/cadeia_demo/receita_04.pt: OK
+fase3/cadeia_demo/receita_05.pt: OK
+fase3/cadeia_demo/receita_06.pt: OK
+fase3/cadeia_demo/receita_07.pt: OK
+fase3/cadeia_demo/receita_08.pt: OK
+fase3/cadeia_demo/quantizada_01_u16.npy: OK
+fase3/cadeia_demo/quantizada_02_u16.npy: OK
+fase3/cadeia_demo/quantizada_03_u16.npy: OK
+fase3/cadeia_demo/quantizada_04_u16.npy: OK
+fase3/cadeia_demo/quantizada_05_u16.npy: OK
+fase3/cadeia_demo/quantizada_06_u16.npy: OK
+fase3/cadeia_demo/quantizada_07_u16.npy: OK
+fase3/cadeia_demo/quantizada_08_u16.npy: OK
+fase3/smoke/cadeia.json: OK
+fase3/smoke/desafio_01.npy: OK
+fase3/smoke/desafio_02.npy: OK
+fase3/smoke/receita_01.pt: OK
+fase3/smoke/receita_02.pt: OK
+fase3/smoke/quantizada_01_u16.npy: OK
+fase3/smoke/quantizada_02_u16.npy: OK
+--- fase4/hashes_fase4.sha256 (5) ---
+fase4/validacao_cross_cpu_windows.md: OK
+fase4/conferir_saida.py: OK
+fase4/logs/raw/f4_e1_saida_windows.txt: OK
+fase4/logs/raw/f4_e1_conferimento.txt: OK
+fase4/logs/etapa11.md: OK
+
+TOTAL:
+80

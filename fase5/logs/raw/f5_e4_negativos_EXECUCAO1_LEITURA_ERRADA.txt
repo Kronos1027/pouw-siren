@@ -1,0 +1,253 @@
+== teste_negativo_int.py — PoUW Fase 5 (E4: suíte adversarial do caminho inteiro) ==
+INICIO 2026-09-15 01:15:15 UTC
+
+-- E4a: sensibilidade a perturbação de 1 peso (in-process) --
+baseline (íntegro): forward 26.32 s | comp 162d852c6b603f0c…
+
+ δ (LSB Q63) |  δ (unid. do sinal) |  bins/4096 | hash mudou | gate
+           1 |           1.084e-19 |          0 |        NÃO | APROVADO
+        1024 |           1.110e-16 |          0 |        NÃO | APROVADO
+     1048576 |           1.137e-13 |          0 |        NÃO | APROVADO
+  1073741824 |           1.164e-10 |          0 |        NÃO | APROVADO
+  8589934592 |           9.313e-10 |          0 |        NÃO | APROVADO
+1099511627776 |           1.192e-07 |          2 |        SIM | APROVADO
+
+LEITURA: δ até 2^20 LSB (≈1e-13 do sinal) é invisível ao 
+compromisso quantizado — o mesmo piso de ruído que a F2/E2 mediu
+no quantizador isolado (projeto: o hash compromete o CONTEÚDO
+quantizado, não nano-diferenças; a âncora SHA-256 do .bin cobre a
+integridade byte-a-byte). A partir de δ ≈ 2^30–2^33 o compromisso
+muda (acima do piso da grade B=16 ≈ 1,5e-5 do sinal).
+
+-- E4b: fraudes estruturais (subprocessos frios do verificar_int) --
+--- N1 controle positivo ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:18:22 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = ecd67af33f470be515c0105c325451551ca95956a9d9ce3b3e98c9c6c43b9eda
+H2 sha256(desafio)= 87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/pesos_int/pesos_int_cadeia_01.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/desafio_01.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000748 s
+limites+ref bits : 0.000004 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000764 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be
+C1 vs esperado   : 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → CONFERE
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 2494961234793315219853636098217185822180000
+   limite N·alcance²            = 15287172193346316547599451906306279099858944
+   → APROVADO (margem ≈ 6,12×, razão exata em inteiros)
+C3 payload vs quantizada publicada (/home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/quantizada_01_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+
+RESULTADO: VÁLIDO (código 0)
+FIM 2026-09-15 01:18:49 UTC
+[N1 controle positivo] código de saída: 0 | esperado: 0 (VÁLIDO)
+[N1 controle positivo] COMPORTOU COMO ESPERADO
+
+--- N2 compromisso adulterado ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:18:49 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = ecd67af33f470be515c0105c325451551ca95956a9d9ce3b3e98c9c6c43b9eda
+H2 sha256(desafio)= 87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/pesos_int/pesos_int_cadeia_01.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/desafio_01.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000009 s
+forward inteiro  : 26.000150 s
+limites+ref bits : 0.000003 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000167 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be
+C1 vs esperado   : 262d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → DIVERGE
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 2494961234793315219853636098217185822180000
+   limite N·alcance²            = 15287172193346316547599451906306279099858944
+   → APROVADO (margem ≈ 6,12×, razão exata em inteiros)
+
+RESULTADO: INVÁLIDO (código 1)
+FIM 2026-09-15 01:19:15 UTC
+[N2 compromisso adulterado] código de saída: 1 | esperado: 1 (INVÁLIDO)
+[N2 compromisso adulterado] COMPORTOU COMO ESPERADO
+
+--- N3 pesos de outro bloco ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:19:15 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = ec2f86584d58e32f5a2ddb1a74f51ff2a3d40b6e39e2a5168c6708489d183280
+H2 sha256(desafio)= 87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/pesos_int/pesos_int_cadeia_02.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/desafio_01.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000180 s
+limites+ref bits : 0.000004 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000196 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 86c43bb43cbef4eac362fc58a295221f1233b6e75fa87f86051ccc4a72782e5a
+C1 vs esperado   : 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → DIVERGE
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 5472985644436548821299186393910526873645510000
+   limite N·alcance²            = 15287172193346316547599451906306279099858944
+   → REPROVADO (margem ≈ ∞, razão exata em inteiros)
+
+RESULTADO: INVÁLIDO (código 1)
+FIM 2026-09-15 01:19:42 UTC
+[N3 pesos de outro bloco] código de saída: 1 | esperado: 1 (INVÁLIDO)
+[N3 pesos de outro bloco] COMPORTOU COMO ESPERADO
+
+[N4] pixel máximo no índice 56; byte 5 XOR 0x40 → desafio_adulterado.npy
+--- N4 desafio adulterado (pixel máximo) ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:19:42 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = ecd67af33f470be515c0105c325451551ca95956a9d9ce3b3e98c9c6c43b9eda
+H2 sha256(desafio)= a201f923c2db6a189f4893e2b5f8e1407338b94b2536a6c597dc5b6bfc236a27 DIVERGE
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/pesos_int/pesos_int_cadeia_01.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/fase5/logs/negativos_tmp/desafio_adulterado.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000316 s
+limites+ref bits : 0.000003 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000331 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: d75a2977e23a781f166e3b84cbd711325903d9992abf90a9dfe5f3219896a63b
+C1 vs esperado   : 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → DIVERGE
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 2494828617092735526182730331041597408740000
+   limite N·alcance²            = 15143263314364135162449755852848188375433216
+   → APROVADO (margem ≈ 6,06×, razão exata em inteiros)
+
+RESULTADO: INVÁLIDO (código 1)
+FIM 2026-09-15 01:20:08 UTC
+[N4 desafio adulterado (pixel máximo)] código de saída: 1 | esperado: 1 (INVÁLIDO)
+[N4 desafio adulterado (pixel máximo)] COMPORTOU COMO ESPERADO
+
+[N5] swap dos 2 primeiros pesos (canais x↔y da unidade 0) → pesos_swap.bin
+--- N5 swap de pesos ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:20:08 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = c004c4983db242e4fafbdcf2222a162f9d43b6d478066c86bec08c5bc7ed1388
+H2 sha256(desafio)= 87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/logs/negativos_tmp/pesos_swap.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/fase3/cadeia_demo/desafio_01.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000174 s
+limites+ref bits : 0.000004 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000190 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 8cbb86647bd6c7132b20083d09dc3fc4c6a4c961b60c484fdfcd4c5d8248649c
+C1 vs esperado   : 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be → DIVERGE
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 22100037091414259458022689922719276627380000
+   limite N·alcance²            = 15287172193346316547599451906306279099858944
+   → REPROVADO (margem ≈ 0,69×, razão exata em inteiros)
+
+RESULTADO: INVÁLIDO (código 1)
+FIM 2026-09-15 01:20:34 UTC
+[N5 swap de pesos] código de saída: 1 | esperado: 1 (INVÁLIDO)
+[N5 swap de pesos] COMPORTOU COMO ESPERADO
+
+--- N6 gate mais rígido (alvo 50, receita ~40 dB) ---
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 01:20:34 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = 9b8617c49f006e1704d23f56412182ae7f44f24df25f8e1720b82f367da9b70a
+H2 sha256(desafio)= f1dffaec613a609ed110fed9ce131c101f0989781d33004813f8c34ac2720bd8
+
+Pesos : /home/z/my-project/download/pouw_fase1/fase5/pesos_int/pesos_int_f2_alvo40db.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: /home/z/my-project/download/pouw_fase1/desafio_b0f90ffe.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000084 s
+limites+ref bits : 0.000004 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000100 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 0ee90ec7eb7f38b12c5f250882af190b2b9ec78529b42665641967cc8a50b585
+C2 gate (inteiro exato, alvo 50 dB): S·10^5 = 18179137129262156759882098452171866764400000
+   limite N·alcance²            = 16676459061074310887275476595546918381158400
+   → REPROVADO (margem ≈ 0,91×, razão exata em inteiros)
+
+RESULTADO: INVÁLIDO (código 1)
+FIM 2026-09-15 01:21:00 UTC
+[N6 gate mais rígido (alvo 50, receita ~40 dB)] código de saída: 1 | esperado: 1 (INVÁLIDO)
+[N6 gate mais rígido (alvo 50, receita ~40 dB)] COMPORTOU COMO ESPERADO
+
+artefatos temporários removidos (regeneráveis pelo script)
+
+-- RESUMO --
+E4a: 6 perturbações medidas; compromisso muda a partir de δ=1099511627776 LSB Q63
+E4b: casos conforme esperado: TODOS
+RESULTADO: SUÍTE ADVERSARIAL APROVADA (código 0)
+FIM 2026-09-15 01:21:00 UTC

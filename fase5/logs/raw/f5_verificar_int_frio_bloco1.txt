@@ -1,0 +1,33 @@
+== verificar_int.py — PoUW Fase 5 (verificador frio 100% inteiro, pouw-int-v1) ==
+INICIO 2026-09-15 02:00:55 UTC
+Python 3.12.14 | byteorder da máquina: little (leituras são little-endian EXPLÍCITAS — portável)
+
+-- AUDITORIA ZERO-FLOAT (runtime) --
+OK: math/cmath/numpy/torch/scipy/decimal/fractions/statistics/random AUSENTES de sys.modules
+Imports do processo: apenas argparse/ast/datetime/hashlib/platform/sys/time + siren_int (idem)
+Tempos medidos em NANOSSEGUNDOS inteiros (perf_counter_ns) — nenhum float é materializado neste processo
+
+-- Âncoras de bytes (SHA-256) --
+H1 sha256(pesos)  = ecd67af33f470be515c0105c325451551ca95956a9d9ce3b3e98c9c6c43b9eda
+H2 sha256(desafio)= 87721bb09baebb23d763346ce4844a1dd044356e85434093c700bff8c92002b0
+
+Pesos : fase5/pesos_int/pesos_int_cadeia_01.bin
+        camadas=[2, 128, 128, 128, 1] omega_0=30 grade=64 (4096 pontos)
+Desafio: fase3/cadeia_demo/desafio_01.npy | shape 64x64 | lo/hi em Q63 por seleção de bits
+
+-- Tempos (perf_counter_ns, inteiros) --
+carga pesos .bin : 0.000008 s
+forward inteiro  : 26.000205 s
+limites+ref bits : 0.000004 s
+quantização+hash : 0.000002 s
+gate exato       : 0.000000 s
+TOTAL (carga → gate): 26.000220 s
+
+COMPROMISSO pouw-int-v1|B=16|64x64|: 162d852c6b603f0cd94568891cff9512a8a5f78f1c1f185279e69912ed2933be
+C2 gate (inteiro exato, alvo 40 dB): S·10^4 = 2494961234793315219853636098217185822180000
+   limite N·alcance²          = 15287172193346316547599451906306279099858944
+   → APROVADO (margem ≈ 6,12×, razão exata em inteiros)
+C3 payload vs quantizada publicada (fase3/cadeia_demo/quantizada_01_u16.npy): 0/4096 bins divergentes → PAYLOAD IDÊNTICO ao v1
+
+RESULTADO: VÁLIDO (código 0)
+FIM 2026-09-15 02:01:22 UTC

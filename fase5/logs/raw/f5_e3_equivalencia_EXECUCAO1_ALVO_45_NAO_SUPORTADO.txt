@@ -1,0 +1,42 @@
+== experimento_equivalencia.py — PoUW Fase 5 (E3 equivalência + E5 custos) ==
+INICIO 2026-09-15 01:28:46 UTC
+Python 3.12.14 | torch 2.14.0+cpu | numpy 2.1.3
+v1 = float64 + BLAS + libm (torch, 1 thread) | v2 = inteiros Q63 (siren_int)
+receitas: 18 (8 cadeia + 4 F1 + 6 F2)
+
+tag            |  PSNR v1 |  gate v1 |  gate v2 |  bins≠ |   max|ΔR| | payload |  comp v2 (16 hex) | t v1 (s) | t v2 (s)
+cadeia_01      |  47.8726 |    APROV |    APROV |      0 |  7.33e-15 |       = | 162d852c6b603f0c… |   0.0186 |    26.26
+               comp v1: cd579702b18e133e4edae3a9a812e2067547fe9dc1fb960f9b19fbf71fb31ff7
+cadeia_02      |  48.4494 |    APROV |    APROV |      0 |  7.77e-15 |       = | 9366457358ebfdcb… |   0.0150 |    26.31
+               comp v1: 0fff8405892f2d0fa4732d82091d4672de25ad5db72af82e8748b24347a79a8f
+cadeia_03      |  48.6712 |    APROV |    APROV |      0 |  7.83e-15 |       = | 32e7e3efb99e48a8… |   0.0169 |    26.39
+               comp v1: 7cd2df64afce402e3b0e4253f49866972c75309aef0a6d8fcbc646eb687dd830
+cadeia_04      |  48.4106 |    APROV |    APROV |      0 |  7.99e-15 |       = | 3d34616b5ce20c03… |   0.0165 |    27.00
+               comp v1: f388b1c19f74c7ab6a66136b39698115832bc72956b726c77188c471f8b83cd5
+cadeia_05      |  48.8548 |    APROV |    APROV |      0 |  6.69e-15 |       = | 5573254afe060d85… |   0.0161 |    28.09
+               comp v1: 5cd04941ad0e99764aac17c252a1c05be2940fafed535e72e16abf285dd353f5
+cadeia_06      |  50.1790 |    APROV |    APROV |      0 |  7.22e-15 |       = | cad3861e224de406… |   0.0116 |    28.28
+               comp v1: d91f50f3699d5bfa8bc55613e170f7e74ca325fb2972a9041d710f2bea70169b
+cadeia_07      |  47.0671 |    APROV |    APROV |      0 |  5.55e-15 |       = | 5123013656af90be… |   0.0171 |    28.44
+               comp v1: f0d4ab32fe138b9174bdb66d780003c36e97bf9360ad44fe3a871a9d277ea3a6
+cadeia_08      |  44.7247 |    APROV |    APROV |      0 |  1.31e-14 |       = | f83468725ccbed6e… |   0.0194 |    27.33
+               comp v1: eece79b0314d8d040f5d5e4d410a0b7ba9efe022fa7594a6f02f9c68d0f9a917
+f1_8b457d0a    |  49.2587 |    APROV |    APROV |      0 |  6.00e-15 |       = | 61dd3a86b1b35390… |   0.0174 |    27.26
+               comp v1: 8397befca9f69cfcc9da2fc0e7719c8fa6b7c1cc5612a8236c6cc1e8fc544f4a
+f1_b0f90ffe    |  49.6253 |    APROV |    APROV |      0 |  6.33e-15 |       = | 0ee90ec7eb7f38b1… |   0.0150 |    27.46
+               comp v1: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+f1_d037aef4    |  48.3896 |    APROV |    APROV |      0 |  5.33e-15 |       = | de0dbdd311f43f19… |   0.0158 |    27.50
+               comp v1: b4b6df845ea4861d8ed4071b463828dcdb40725ccdf471f8993c07031a0e20bd
+f1_extra60db   |  60.8704 |    APROV |    APROV |      0 |  6.22e-15 |       = | 2d76414c5549e969… |   0.0121 |    27.50
+               comp v1: 92b6fe06dde1cd1c07120eb6f8c96e3179d230a2e3ee0c01840106c1e54af0da
+f2_alvo40db    |  49.6253 |    APROV |    APROV |      0 |  6.33e-15 |       = | 0ee90ec7eb7f38b1… |   0.0170 |    27.54
+               comp v1: 93ad1d430c47b1a66f23b3da4cb758c9173d59ef1d72786b9e32afd557e517c8
+Traceback (most recent call last):
+  File "/home/z/my-project/download/pouw_fase1/fase5/experimento_equivalencia.py", line 209, in <module>
+    main()
+  File "/home/z/my-project/download/pouw_fase1/fase5/experimento_equivalencia.py", line 125, in main
+    gate_v2, _esq, _lim = gate_mse_int(r_int, ref_i, lo_i, hi_i, alvo)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/z/my-project/download/pouw_fase1/fase5/siren_int.py", line 486, in gate_mse_int
+    raise ValueError(f"pouw-int-v1 exige alvo múltiplo de 10 dB; recebi {alvo_psnr_db}")
+ValueError: pouw-int-v1 exige alvo múltiplo de 10 dB; recebi 45

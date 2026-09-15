@@ -1,0 +1,188 @@
+== exportação das 18 receitas → pesos_int (.bin Q63) ==
+2026-09-15 01:08:39 UTC
+
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_01.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_01.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027300 s
+SHA-256 do .bin (âncora conferível com sha256sum): ecd67af33f470be515c0105c325451551ca95956a9d9ce3b3e98c9c6c43b9eda
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_02.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_02.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027446 s
+SHA-256 do .bin (âncora conferível com sha256sum): ec2f86584d58e32f5a2ddb1a74f51ff2a3d40b6e39e2a5168c6708489d183280
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_03.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_03.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027279 s
+SHA-256 do .bin (âncora conferível com sha256sum): 043fe6405b9a17e27bbbba2630d16c1afd337e0a65d62024e515acf6f725fcac
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_04.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_04.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027816 s
+SHA-256 do .bin (âncora conferível com sha256sum): 08ab3a21a8436320a7760b5a62226f0722c8b22d8ed339a31b31c8e56b739623
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_05.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_05.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027403 s
+SHA-256 do .bin (âncora conferível com sha256sum): c6eb15ba80f9b6dd5399ecc0865ee9e9c0b9d97aa85b8785c113f2f62c89ab27
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_06.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_06.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.028029 s
+SHA-256 do .bin (âncora conferível com sha256sum): e6778e22814ecb9084862bd11f71883d404e4c015b2984a34a89ad84c653ebf8
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_07.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_07.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.028748 s
+SHA-256 do .bin (âncora conferível com sha256sum): fa1d11acdea618e57d1d95ada4b7ba2d8b184f79a360f97532a5ed519d498885
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase3/cadeia_demo/receita_08.pt
+Saída  : fase5/pesos_int/pesos_int_cadeia_08.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027348 s
+SHA-256 do .bin (âncora conferível com sha256sum): c7279459aeb033c1b8ad31ba042c9627c959430a75739eff32bcab2b77e09bd8
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: receita_8b457d0a.pt
+Saída  : fase5/pesos_int/pesos_int_f1_8b457d0a.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027464 s
+SHA-256 do .bin (âncora conferível com sha256sum): 4e04fee6fa353ff7a90458cf5c51ec3825fed722319ec50722ad6ba925cd86b7
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: receita_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f1_b0f90ffe.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027404 s
+SHA-256 do .bin (âncora conferível com sha256sum): 9b8617c49f006e1704d23f56412182ae7f44f24df25f8e1720b82f367da9b70a
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: receita_d037aef4.pt
+Saída  : fase5/pesos_int/pesos_int_f1_d037aef4.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.026995 s
+SHA-256 do .bin (âncora conferível com sha256sum): 267a3287b787e88bf27dfbf963608fff4f322d9270bfc1ae29d4dfafbac68b61
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: receita_extra_60db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f1_extra60db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027750 s
+SHA-256 do .bin (âncora conferível com sha256sum): bda592cf73620624c6ff3486d1f51de6e28061ab4d97ac468e354d53ec08c053
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo40db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo40db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027574 s
+SHA-256 do .bin (âncora conferível com sha256sum): 9b8617c49f006e1704d23f56412182ae7f44f24df25f8e1720b82f367da9b70a
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo45db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo45db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027499 s
+SHA-256 do .bin (âncora conferível com sha256sum): 9b8617c49f006e1704d23f56412182ae7f44f24df25f8e1720b82f367da9b70a
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo50db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo50db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027580 s
+SHA-256 do .bin (âncora conferível com sha256sum): 252fc4b28b5258a6dca709fdf66c830a06fa74ee4ea401dc35c726df9ac0681b
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo55db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo55db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027248 s
+SHA-256 do .bin (âncora conferível com sha256sum): 17b71f1e49063e00eddafb79598386c6c0865a2dd359aa47cfbb5e9d54fac255
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo60db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo60db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027646 s
+SHA-256 do .bin (âncora conferível com sha256sum): bda592cf73620624c6ff3486d1f51de6e28061ab4d97ac468e354d53ec08c053
+---
+== exportar_pesos_int.py — PoUW Fase 5 (pesos inteiros canônicos Q63) ==
+Python 3.12.14 | PyTorch 2.14.0+cpu
+Receita: fase2/receita_alvo65db_b0f90ffe.pt
+Saída  : fase5/pesos_int/pesos_int_f2_alvo65db.bin
+Header : pouw-int-v1|Q=63|camadas=2,128,128,128,1|omega_0=30|grade=64
+Pesos+vieses exportados: 33537
+Tempo (carga + conversão por bits + gravação): 0.027499 s
+SHA-256 do .bin (âncora conferível com sha256sum): d9a22039e9595dbc5891cfd817d07c719885d1dba3932810dd83d65ac4d73f0a
+---
+
+== determinismo do export (2ª passada, cmp byte a byte) ==
+determinístico: cadeia_01 OK
+determinístico: cadeia_02 OK
+determinístico: cadeia_03 OK
+determinístico: cadeia_04 OK
+determinístico: cadeia_05 OK
+determinístico: cadeia_06 OK
+determinístico: cadeia_07 OK
+determinístico: cadeia_08 OK
+determinístico: f1_8b457d0a OK
+determinístico: f1_b0f90ffe OK
+determinístico: f1_d037aef4 OK
+determinístico: f1_extra60db OK
+determinístico: f2_alvo40db OK
+determinístico: f2_alvo45db OK
+determinístico: f2_alvo50db OK
+determinístico: f2_alvo55db OK
+determinístico: f2_alvo60db OK
+determinístico: f2_alvo65db OK
+
+total determinísticos: 18/18 | falhas: 0
+2026-09-15 01:09:40 UTC
