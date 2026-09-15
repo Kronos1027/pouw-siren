@@ -161,3 +161,9 @@ entradas em fase5/: 11
 2026-09-15 02:09:57 UTC
 == fecho: versão integral do log bruto de publicação da F5 (linhas gravadas após o commit da4f5b9) ==
 auditoria de token: OK (ausente do diretório)
+To https://github.com/Kronos1027/pouw-siren.git
+   da4f5b9..c8e2db5  main -> main
+remoto: c8e2db548d9b | local: c8e2db5
+entradas sujas: 1
+integridade: 120/120
+2026-09-15 02:10:00 UTC
