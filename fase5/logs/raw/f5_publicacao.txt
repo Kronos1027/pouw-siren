@@ -3,3 +3,126 @@
 == auditoria de vazamento (grep da chave no diretório e no versionado) ==
 OK: a chave não aparece em nenhum arquivo do diretório do repositório
 OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
+== git status (staged) ==
+M  README.md
+M  checar_integridade.sh
+A  fase5/experimento_equivalencia.py
+A  fase5/experimento_ordem.py
+A  fase5/exportar_pesos_int.py
+A  fase5/hashes_fase5.sha256
+A  fase5/logs/etapa13.md
+A  fase5/logs/raw/f5_e0_cadeia_fresca.txt
+A  fase5/logs/raw/f5_e0_git_religacao.txt
+A  fase5/logs/raw/f5_e0_integridade_pos_restore.txt
+A  fase5/logs/raw/f5_e0_pip_install_torch.txt
+A  fase5/logs/raw/f5_e1_exportacao.txt
+A  fase5/logs/raw/f5_e2_ordem.txt
+A  fase5/logs/raw/f5_e2_ordem_EXECUCAO1_NUMERO_EXIBIDO_ERRADO.txt
+A  fase5/logs/raw/f5_e3_equivalencia.txt
+A  fase5/logs/raw/f5_e3_equivalencia_EXECUCAO1_ALVO_45_NAO_SUPORTADO.txt
+A  fase5/logs/raw/f5_e4_negativos.txt
+A  fase5/logs/raw/f5_e4_negativos_EXECUCAO1_LEITURA_ERRADA.txt
+AM fase5/logs/raw/f5_publicacao.txt
+A  fase5/logs/raw/f5_smoke_int.txt
+A  fase5/logs/raw/f5_verificar_int_frio_bloco1.txt
+A  fase5/pesos_int/pesos_int_cadeia_01.bin
+A  fase5/pesos_int/pesos_int_cadeia_02.bin
+A  fase5/pesos_int/pesos_int_cadeia_03.bin
+A  fase5/pesos_int/pesos_int_cadeia_04.bin
+A  fase5/pesos_int/pesos_int_cadeia_05.bin
+A  fase5/pesos_int/pesos_int_cadeia_06.bin
+A  fase5/pesos_int/pesos_int_cadeia_07.bin
+A  fase5/pesos_int/pesos_int_cadeia_08.bin
+A  fase5/pesos_int/pesos_int_f1_8b457d0a.bin
+A  fase5/pesos_int/pesos_int_f1_b0f90ffe.bin
+A  fase5/pesos_int/pesos_int_f1_d037aef4.bin
+A  fase5/pesos_int/pesos_int_f1_extra60db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo40db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo45db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo50db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo55db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo60db.bin
+A  fase5/pesos_int/pesos_int_f2_alvo65db.bin
+A  fase5/relatorio_fase5.md
+A  fase5/siren_int.py
+A  fase5/smoke_int.py
+A  fase5/teste_negativo_int.py
+A  fase5/verificar_int.py
+… (44 entradas no total)
+== commit ==
+[main 11afff4] Fase 5 - caminho de verificação 100% INTEIRO pouw-int-v1 (item 2 do roadmap, último risco teórico de determinismo): forward Q63 bigint sem BLAS/libm/numpy/torch + quantização exata + gate por desigualdade inteira exata (múltiplos de 5 dB, raiz quadrada inteira Newton para r=5) + verificador frio verificar_int.py com auditoria zero-float em runtime (pathlib excluído por puxar math — pegou a auditoria) e tempos em ns inteiros; pesos canônicos .bin int64 LE exportados por bits (18 receitas, 18/18 determinísticos); E2: 3 ordens de soma × 67M termos = bit-idêntico (0/524288) vs float64 (~90% dos bits mudam, max 3.9e-16, bins 0); E3: 18/18 payloads quantizados v1(float64/BLAS)≡v2(inteiro) bit-a-bit, 18/18 gates concordam, max|ΔR| 1.3e-14 (=0.00 passo B16); E4: sweep de sensibilidade (piso 2^40 LSB) + 6/6 fraudes estruturais rejeitadas; E5: custo 26-28 s/bloco (~1700× o float64 — limitação documentada); 8/8 verificações frias zero-float VÁLIDAS reproduzindo o payload publicado pelo caminho BLAS/libm; lacuna do gate a múltiplos de 5 descoberta pela 1ª execução do E3 (preservada com sufixo); +40 âncoras (120 total)
+ 44 files changed, 3736 insertions(+), 26 deletions(-)
+ create mode 100644 fase5/experimento_equivalencia.py
+ create mode 100644 fase5/experimento_ordem.py
+ create mode 100644 fase5/exportar_pesos_int.py
+ create mode 100644 fase5/hashes_fase5.sha256
+ create mode 100644 fase5/logs/etapa13.md
+ create mode 100644 fase5/logs/raw/f5_e0_cadeia_fresca.txt
+ create mode 100644 fase5/logs/raw/f5_e0_git_religacao.txt
+ create mode 100644 fase5/logs/raw/f5_e0_integridade_pos_restore.txt
+ create mode 100644 fase5/logs/raw/f5_e0_pip_install_torch.txt
+ create mode 100644 fase5/logs/raw/f5_e1_exportacao.txt
+ create mode 100644 fase5/logs/raw/f5_e2_ordem.txt
+ create mode 100644 fase5/logs/raw/f5_e2_ordem_EXECUCAO1_NUMERO_EXIBIDO_ERRADO.txt
+ create mode 100644 fase5/logs/raw/f5_e3_equivalencia.txt
+ create mode 100644 fase5/logs/raw/f5_e3_equivalencia_EXECUCAO1_ALVO_45_NAO_SUPORTADO.txt
+ create mode 100644 fase5/logs/raw/f5_e4_negativos.txt
+ create mode 100644 fase5/logs/raw/f5_e4_negativos_EXECUCAO1_LEITURA_ERRADA.txt
+ create mode 100644 fase5/logs/raw/f5_publicacao.txt
+ create mode 100644 fase5/logs/raw/f5_smoke_int.txt
+ create mode 100644 fase5/logs/raw/f5_verificar_int_frio_bloco1.txt
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_01.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_02.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_03.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_04.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_05.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_06.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_07.bin
+ create mode 100644 fase5/pesos_int/pesos_int_cadeia_08.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f1_8b457d0a.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f1_b0f90ffe.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f1_d037aef4.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f1_extra60db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo40db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo45db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo50db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo55db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo60db.bin
+ create mode 100644 fase5/pesos_int/pesos_int_f2_alvo65db.bin
+ create mode 100644 fase5/relatorio_fase5.md
+ create mode 100644 fase5/siren_int.py
+ create mode 100644 fase5/smoke_int.py
+ create mode 100644 fase5/teste_negativo_int.py
+ create mode 100644 fase5/verificar_int.py
+== push (chave via GIT_ASKPASS; nada de token em URL/config) ==
+To https://github.com/Kronos1027/pouw-siren.git
+   e85bfff..11afff4  main -> main
+== conferência remota: git ls-remote (anônimo) ==
+11afff47e6d70a872d2482cfe052dde10c00f078	HEAD
+11afff47e6d70a872d2482cfe052dde10c00f078	refs/heads/main
+== conferência remota: API GET /repos (autenticada) ==
+full_name: Kronos1027/pouw-siren
+pushed_at: 2026-09-15T02:08:51Z
+branch   : main
+message  : None
+== conferência remota: API GET /contents/fase5 (autenticada) ==
+entradas em fase5/: 11
+ - experimento_equivalencia.py file 9161
+ - experimento_ordem.py file 10367
+ - exportar_pesos_int.py file 5465
+ - hashes_fase5.sha256 file 4189
+ - logs dir 0
+ - pesos_int dir 0
+ - relatorio_fase5.md file 22799
+ - siren_int.py file 23736
+ - smoke_int.py file 12549
+ - teste_negativo_int.py file 9433
+ - verificar_int.py file 9096
+== integridade pos-push (âncoras totais) ==
+linhas OK: 120
+2026-09-15 02:08:53 UTC
+2026-09-15 02:09:23 UTC
+== publicar_fase5.sh modo 2: commit do log de publicação (etapa14) ==
+== auditoria de vazamento (grep da chave no diretório e no versionado) ==
+OK: a chave não aparece em nenhum arquivo do diretório do repositório
+OK: a chave não aparece em nenhum arquivo rastreado (HEAD)
